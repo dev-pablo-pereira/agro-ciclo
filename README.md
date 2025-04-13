@@ -40,6 +40,8 @@ o plantio.
 
 [ ] Cálculo da área total e áreas cultivadas.
 
+## Telas Figma
+https://www.figma.com/design/aqRxgdvIgqb72gVDoeYK83/Agro-Ciclo?node-id=0-1&t=wUE1s647r6qLDyXg-1
 [ ] Associação de culturas por área.
 
 [ ] Estimativa de recursos por tipo de cultura.
