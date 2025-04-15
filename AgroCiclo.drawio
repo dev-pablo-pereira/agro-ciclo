@@ -1,10 +1,10 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="26.2.12">
   <diagram name="Página-1" id="kOlUkbhUVTrSechtVCCX">
-    <mxGraphModel dx="799" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1358" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="djw6pl3YEqS7y8JsR5oa-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="QnbcaSNNXja9v9yhrlxL-2">
+        <mxCell id="djw6pl3YEqS7y8JsR5oa-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="QnbcaSNNXja9v9yhrlxL-2" edge="1" target="djw6pl3YEqS7y8JsR5oa-7">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="230" y="210" as="targetPoint" />
           </mxGeometry>
@@ -12,17 +12,26 @@
         <mxCell id="QnbcaSNNXja9v9yhrlxL-2" value="Area" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;strokeColor=default;" parent="1" vertex="1">
           <mxGeometry x="60" y="190" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="djw6pl3YEqS7y8JsR5oa-5" value="Nome" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="djw6pl3YEqS7y8JsR5oa-5" value="Nome" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="60" y="250" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="djw6pl3YEqS7y8JsR5oa-6" value="Cor" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="djw6pl3YEqS7y8JsR5oa-6" value="Cor" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="60" y="270" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="djw6pl3YEqS7y8JsR5oa-7" value="Marcação" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="390" y="190" width="120" height="40" as="geometry" />
+        <mxCell id="djw6pl3YEqS7y8JsR5oa-7" value="Marcação" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="270" y="190" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="djw6pl3YEqS7y8JsR5oa-12" value="id" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="djw6pl3YEqS7y8JsR5oa-12" value="id" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="60" y="230" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="DKXkDDBp-sNOLsxEUSY3-1" value="ID area" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="230" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="DKXkDDBp-sNOLsxEUSY3-2" value="latitude" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="250" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="DKXkDDBp-sNOLsxEUSY3-3" value="longitude" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="270" width="120" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
