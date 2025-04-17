@@ -47,3 +47,52 @@ o plantio.
 ## Telas Figma
 
 https://www.figma.com/design/aqRxgdvIgqb72gVDoeYK83/Agro-Ciclo?node-id=0-1&t=wUE1s647r6qLDyXg-1
+
+## Sprints
+### semana 21 / 25 abril
+
+1. Criação banco de dados
+2. Criação usuário
+3. login do usuário
+4. testes do mesmo
+
+### semana 28 / 02 de maio
+
+1. CRUD área
+2. Interface CRUD
+3. Testes área
+4. CRUD coordenada
+5. Interface CRUD
+6. Testes CRUD
+
+### semana 06 / 09
+
+1. CRUD produto
+2. Interface CRUD produto
+3. testes produto
+4. CRUD safra
+5. Interface safra
+6. Testes safra
+
+### semana 12 / 16
+
+1. CRUD cultivo
+2. Inteface cultivo
+3. Testes cultivos
+
+### semana 19 / 23
+
+1. Refatorações e melhorias técnicas
+2. Testes de fluxo
+
+### semana 26 / 30
+
+1. Tela lateral de navegação funcional
+2. Adicionar calculo da estimativa
+3. Implementar visualização da estimativa com base em área e produto
+4. Testes para calculo de estimativa
+
+### semana 02 / 06 junho
+
+1. Teste de fluxo completo
+2. Realizar refatorações
