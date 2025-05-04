@@ -1,5 +1,4 @@
 import db from "./InitDataBase";
-import UserRepository from "./UserRepository";
 
 export type Area = {
   id?: number;
