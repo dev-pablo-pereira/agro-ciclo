@@ -27,7 +27,7 @@ export default class UserRepository {
 
   public async create(user: User) {
     const result = await db.runAsync(
-        `INSERT INT users (name, password) values (?, ?);`,
+        `INSERT INTO users (name, password) values (?, ?);`,
         [user.name, user.password]
     );
     return result.lastInsertRowId;
