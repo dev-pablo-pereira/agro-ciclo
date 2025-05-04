@@ -29,7 +29,7 @@ export default class CoordinateRepository {
 
   public async create(coordinate: Coordinate) {
     const result = await db.runAsync(
-        `INSERT INTO coordinates (name, color) values (?, ?, ?);`,
+        `INSERT INTO coordinates (latitude, longitude, id_area) values (?, ?, ?);`,
         [coordinate.latitude, coordinate.longitude, coordinate.id_area]
     );
     return result.lastInsertRowId;
