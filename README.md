@@ -48,6 +48,10 @@ o plantio.
 
 https://www.figma.com/design/aqRxgdvIgqb72gVDoeYK83/Agro-Ciclo?node-id=0-1&t=wUE1s647r6qLDyXg-1
 
+## Diagrama banco de dados
+ 
+https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=AgroCiclo.drawio&dark=auto#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fdev-pablo-pereira%2Fagro-ciclo%2Fmain%2FAgroCiclo.drawio#%7B%22pageId%22%3A%22kOlUkbhUVTrSechtVCCX%22%7D
+
 ## Sprints
 ### semana 21 / 25 abril
 
