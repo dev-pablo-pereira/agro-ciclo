@@ -1,6 +1,8 @@
 import { View, StyleSheet} from "react-native";
 import { Button, Input } from '@rneui/themed';
 
+import "./global.css"
+
 
 export default function App() {
   return (
