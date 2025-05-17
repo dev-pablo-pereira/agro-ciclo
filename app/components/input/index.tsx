@@ -1,7 +1,7 @@
 import { Input, Icon } from '@rneui/themed';
 import { StyleSheet } from 'react-native';
 
-interface InputProps {
+interface CustomInputProps {
   placeholder?: string;
   label: string;
   secureText?: boolean;
@@ -15,7 +15,7 @@ export default function CustomInput({
   iconType,
   iconName,
   secureText,
-}: InputProps) {
+}: CustomInputProps) {
   return (
     <Input
         containerStyle={styles.container}
