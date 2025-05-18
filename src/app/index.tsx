@@ -9,7 +9,7 @@ export default function App() {
     <View  style={styles.container} >
       <CustomInput placeholder="Pablito" label="Nome"/>
       <CustomInput label="Senha" iconType="MaterialIcons" iconName="visibility" secureText/>
-      <CustomButtom title="Entrar" iconName="save"/>
+      <CustomButtom title="Entrar" icon="save"/>
     </View>
   );
 }
