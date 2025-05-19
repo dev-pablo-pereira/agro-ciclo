@@ -2,6 +2,7 @@ import { View, StyleSheet } from "react-native";
 import CustomButtom from "./components/buttom";
 import CardArea from "./components/cardArea";
 import { FlatList } from "react-native";
+import { useRouter } from "expo-router";
 
 const AREAS = [
   { id: "1", title: "Área 1", dimension: "60", color: "#CFB8B8" },
@@ -13,10 +14,12 @@ const AREAS = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.containerButtom}>
-        <CustomButtom title="Nova Área" icon="plus" type="entypo" />
+        <CustomButtom title="Nova Área" icon="plus" type="entypo" onPress={ ()=> router.push('area')} />
       </View>
 
       <FlatList
@@ -41,11 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     backgroundColor: "#F5F5F5",
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   containerButtom: {
-    alignItems: 'center',
-    width: '100%'
+    alignItems: "center",
+    width: "100%",
   },
   list: {
     width: "100%",

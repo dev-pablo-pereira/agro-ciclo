@@ -1,18 +1,17 @@
 import { Button, Icon } from '@rneui/themed';
 import { StyleSheet } from 'react-native'
-import { useRouter } from 'expo-router'
 
 interface CustomButtomProps {
     title: string;
     icon: string
     type?: string
+    onPress: () => void
 }
 
-export default function CustomButtom({title, icon, type} : CustomButtomProps) {
-  const router = useRouter();
+export default function CustomButtom({title, icon, type, onPress} : CustomButtomProps) {
     return (
          <Button
-          onPress={ () => router.navigate('/home') }
+          onPress={ onPress }
           title={title} 
           icon={<Icon name={icon} type={type} color="white" />}
           iconRight={true}
