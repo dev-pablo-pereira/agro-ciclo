@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.containerButtom}>
-        <CustomButtom title="Nova Área" icon="plus" type="entypo" onPress={ ()=> router.push('area')} />
+        <CustomButtom title="Nova Área" icon="plus" type="entypo" onPress={ ()=> router.push('/area')} />
       </View>
 
       <FlatList
