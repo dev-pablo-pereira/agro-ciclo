@@ -1,5 +1,6 @@
 import { Card, Text } from "@rneui/themed";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 
 interface CardLocationProps {
   lat: number;
@@ -8,11 +9,31 @@ interface CardLocationProps {
 
 export default function CardLocation({ lat, long }: CardLocationProps) {
   return (
-    <Card>
-      <Text>Lat: {lat}</Text>
-      <Text>Long: {long}</Text>
+    <Card containerStyle={styles.container}>
+      <Text style={styles.text}>Lat: {lat}</Text>
+      <Text style={styles.text}>Long: {long}</Text>
+      <View style={styles.row}>
+        <Text> Cor Área</Text>
+        <TouchableOpacity />
+      </View>
     </Card>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+    width: "70%",
+    borderRadius: 5,
+    backgroundColor: "#8D6E63",
+    marginLeft: '15%'
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 7,
+  },
+});
