@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@nghinv/react-native-color-picker": "^0.0.3",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
     "expo": "~52.0.43",
@@ -21,6 +20,7 @@
     "nativewind": "^4.1.23",
     "react": "18.3.1",
     "react-native": "0.76.9",
+    "react-native-color-wheel": "^0.1.7",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-reanimated": "^3.17.5",

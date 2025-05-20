@@ -1594,19 +1594,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@nghinv/react-native-animated@>=0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@nghinv/react-native-animated/-/react-native-animated-0.2.0.tgz#11ce1b616bcef77cc21bfe55c2076700c6e85c78"
-  integrity sha512-1cQxxfSah1xT+7dr+lOl9keRHJRaczRsCWBu/O5bl46+jVATi3r2oNM36MKpplmGB3miGgzQ/4viGI3vX4Wt7Q==
-
-"@nghinv/react-native-color-picker@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nghinv/react-native-color-picker/-/react-native-color-picker-0.0.3.tgz#941fb9afa206ea1a56c9af21d1ca04ef517c052f"
-  integrity sha512-tGxY9gH88+T878jumZOvTjlTdavYn+I9WdcQxCrMBvvAQIOPKnmwXEOUq5EsUEx1oj3zMepbLKvmkmQnjlC0zg==
-  dependencies:
-    "@nghinv/react-native-animated" ">=0.2.0"
-    react-fast-compare "*"
-
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -2738,6 +2725,11 @@ color@^4.2.3:
   dependencies:
     color-convert "^2.0.1"
     color-string "^1.9.0"
+
+colorsys@^1.0.17:
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/colorsys/-/colorsys-1.0.22.tgz#e08459b297de7d4da4a53c26c3555f5a9609ad88"
+  integrity sha512-KCqF23oqkOD0IUCTLCl0obwGIMyeGFlNWuJ4oRRVKmawvKQeb3x5UvajVeH9AShZWU9hNaIhjXeTGw3iPNtl/Q==
 
 combined-stream@^1.0.8:
   version "1.0.8"
@@ -5430,7 +5422,7 @@ react-devtools-core@^5.3.1:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-fast-compare@*, react-fast-compare@^3.2.0, react-fast-compare@^3.2.2:
+react-fast-compare@^3.2.0, react-fast-compare@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
@@ -5465,6 +5457,13 @@ react-is@^19.1.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-19.1.0.tgz#805bce321546b7e14c084989c77022351bbdd11b"
   integrity sha512-Oe56aUPnkHyyDxxkvqtd7KkdQP5uIUfHxd5XTb3wE9d/kRnZLmKbDB0GWk919tdQ+mxxPtG6EAs6RMT6i1qtHg==
+
+react-native-color-wheel@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-color-wheel/-/react-native-color-wheel-0.1.7.tgz#21c61faad37518abc2f534b50b67c435e523cdaa"
+  integrity sha512-LxkRHRpRZvjZag24lIFRNCczoUTIY0xCQgB54LEjrh0oeM0CvBq3LGx4vnT39n5tSbvBbXS2rkJxFcVn2HVKrQ==
+  dependencies:
+    colorsys "^1.0.17"
 
 react-native-css-interop@0.1.22:
   version "0.1.22"
