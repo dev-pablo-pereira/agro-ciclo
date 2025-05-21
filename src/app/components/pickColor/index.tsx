@@ -17,8 +17,8 @@ export default function PickColor() {
 
 const styles = StyleSheet.create({
   wheel: {
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
     backgroundColor: "#fff",
   },
 });
