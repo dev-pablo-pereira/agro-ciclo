@@ -12,10 +12,6 @@ export default function CardLocation({ lat, long }: CardLocationProps) {
     <Card containerStyle={styles.container}>
       <Text style={styles.text}>Lat: {lat}</Text>
       <Text style={styles.text}>Long: {long}</Text>
-      <View style={styles.row}>
-        <Text> Cor Área</Text>
-        <TouchableOpacity />
-      </View>
     </Card>
   );
 }
@@ -29,10 +25,5 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontSize: 20,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 7,
-  },
+  }
 });
