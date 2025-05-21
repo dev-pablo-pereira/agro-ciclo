@@ -5,6 +5,7 @@ import PickColor from "./components/pickColor";
 import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
 import CardLocation from "./components/cardLocation";
+import { useRouter } from "expo-router";
 
 const LOCATIONS = [
   { id: "1", lat: 30, long: 90 },
@@ -18,6 +19,7 @@ const LOCATIONS = [
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
+  const router = useRouter()
 
   return (
     <View style={styles.wrapper}>
@@ -46,7 +48,7 @@ export default function Area() {
 
         <CustomButtom
           title="Salvar área"
-          onPress={() => console.log("Salvar")}
+          onPress={() => router.navigate('/home')}
         />
       </ScrollView>
 
