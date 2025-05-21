@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 
 interface CustomButtomProps {
     title: string;
-    icon: string
+    icon?: string
     type?: string
     onPress: () => void
 }
@@ -12,8 +12,8 @@ export default function CustomButtom({title, icon, type, onPress} : CustomButtom
     return (
          <Button
           onPress={ onPress }
-          title={title} 
-          icon={<Icon name={icon} type={type} color="white" />}
+          title={title}
+          icon={icon ? <Icon name={icon} type={type} color="white" /> : undefined}
           iconRight={true}
           containerStyle={styles.container}
           buttonStyle={styles.button}
