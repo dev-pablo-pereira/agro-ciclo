@@ -4,6 +4,7 @@ import CustomInput from "./components/input";
 import PickColor from "./components/pickColor";
 import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
+import CardLocation from "./components/cardLocation";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
@@ -26,7 +27,7 @@ export default function Area() {
         onPress={() => console.log("Marcar")}
       />
 
-      {/* Aqui você pode adicionar lat/long depois */}
+      <CardLocation lat={20} long={30}/>
 
       <CustomButtom title="Salvar área" onPress={() => console.log("Salvar")} />
 
