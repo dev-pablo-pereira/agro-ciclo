@@ -14,6 +14,11 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
+      <Stack.Screen name="area" options={{
+        title: "Área",
+        headerStyle: styles.headerStyle,
+        headerRight: () => <Icon name="menu" type="feather" />,
+      }}/>
     </Stack>
   );
 }
