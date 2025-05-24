@@ -2,7 +2,7 @@ import { Button, Card, Icon, Text } from "@rneui/themed";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 
-interface CardLocationProps {
+export interface CardLocationProps {
   lat: number;
   long: number;
   onPress?: () => void

@@ -6,16 +6,7 @@ import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
 import CardLocation from "../components/cardLocation";
 import { useRouter } from "expo-router";
-
-const LOCATIONS = [
-  { id: "1", lat: 30, long: 90 },
-  { id: "2", lat: 31, long: 91 },
-  { id: "3", lat: 32, long: 92 },
-  { id: "4", lat: 33, long: 93 },
-  { id: "5", lat: 34, long: 94 },
-  { id: "6", lat: 35, long: 95 },
-  { id: "7", lat: 36, long: 96 },
-];
+import { locations } from "../mocks/Locations";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
@@ -41,8 +32,8 @@ export default function Area() {
         />
 
         <View style={styles.containerList}>
-          {LOCATIONS.map((item) => (
-            <CardLocation key={item.id} lat={item.lat} long={item.long} />
+          {locations.map((item, index) => (
+            <CardLocation key={index} lat={item.lat} long={item.long} />
           ))}
         </View>
 
