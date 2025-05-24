@@ -1,7 +1,8 @@
 import { View, StyleSheet } from "react-native";
-import CustomInput from "./components/input";
-import CustomButtom from "./components/buttom";
+
 import { useRouter } from "expo-router";
+import CustomInput from "../components/input";
+import CustomButtom from "../components/buttom";
 
 export default function App() {
   const router = useRouter();

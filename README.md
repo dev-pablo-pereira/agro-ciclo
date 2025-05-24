@@ -100,3 +100,23 @@ https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&e
 
 1. Teste de fluxo completo
 2. Realizar refatorações
+
+## Atualizações desde o último checkpoint
+
+1. Implementei o expo-router para criação das telas no formato stack e utilizei o hook useRouter para navegação entre telas, com os métodos push e navigate.
+2. Tentei integrar o NativeWind para estilização, mas enfrentei um erro que não consegui resolver. Como alternativa, utilizei o StyleSheet do react-native.
+3. Utilizei componentes da React Native Elements como Button, Input, Icon e Card.
+4. Seguindo o fluxo passado na aula 05 foi criado as tarefas em um projeto destinado ao repositorio do código no gitHub.
+5. Tentei seguir as boas praricas de criação de componentes seguindo a ideia do Atomic design em todos os meus componentes.
+  
+### Aplicação dos conceitos da aula “Boas práticas para a criação de componentes reutilizáveis” 
+- Utilizei o padrão Atomic Design na construção dos componentes.
+- Criei mocks para simular dados e testar o comportamento dos componentes — por exemplo, na tela Home, onde são listadas as áreas cadastradas.
+- No componente CustomButton, adicionei uma prop que recebe uma callback no onPress, permitindo que o componente pai defina o comportamento.
+- O Atomic Design foi aplicado nos seguintes componentes:
+  - CustomButton
+  - CustomInput
+  - CardArea
+  - CardLocation
+  - ColorArea
+  - PickColor
