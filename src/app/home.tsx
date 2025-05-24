@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
-import CustomButtom from "./components/buttom";
-import CardArea from "./components/cardArea";
+import CustomButtom from "../components/buttom";
+import CardArea from "../components/cardArea";
 import { FlatList } from "react-native";
 import { useRouter } from "expo-router";
 

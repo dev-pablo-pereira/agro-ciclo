@@ -1,10 +1,10 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import CustomButtom from "./components/buttom";
-import CustomInput from "./components/input";
-import PickColor from "./components/pickColor";
+import CustomButtom from "../components/buttom";
+import CustomInput from "../components/input";
+import PickColor from "../components/pickColor";
 import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
-import CardLocation from "./components/cardLocation";
+import CardLocation from "../components/cardLocation";
 import { useRouter } from "expo-router";
 
 const LOCATIONS = [
