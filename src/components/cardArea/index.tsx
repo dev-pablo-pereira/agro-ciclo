@@ -2,9 +2,9 @@ import { Card, Text } from "@rneui/themed";
 import { View, StyleSheet } from "react-native";
 import ColorArea from "../colorArea";
 
-interface CardAreaProps {
+export interface CardAreaProps {
   title: string;
-  dimension: string;
+  dimension: number;
   color: string
 }
 

@@ -5,12 +5,12 @@ import { FlatList } from "react-native";
 import { useRouter } from "expo-router";
 
 const AREAS = [
-  { id: "1", title: "Área 1", dimension: "60", color: "#CFB8B8" },
-  { id: "2", title: "Área 2", dimension: "70", color: "#CFB858" },
-  { id: "3", title: "Área 1", dimension: "60", color: "#CFB8B8" },
-  { id: "4", title: "Área 2", dimension: "70", color: "#CFB858" },
-  { id: "5", title: "Área 1", dimension: "60", color: "#CFB8B8" },
-  { id: "6", title: "Área 2", dimension: "70", color: "#CFB858" },
+  { id: "1", title: "Área 1", dimension: 60, color: "#CFB8B8" },
+  { id: "2", title: "Área 2", dimension: 70, color: "#CFB858" },
+  { id: "3", title: "Área 1", dimension: 60, color: "#CFB8B8" },
+  { id: "4", title: "Área 2", dimension: 70, color: "#CFB858" },
+  { id: "5", title: "Área 1", dimension: 60, color: "#CFB8B8" },
+  { id: "6", title: "Área 2", dimension: 70, color: "#CFB858" },
 ];
 
 export default function Home() {
