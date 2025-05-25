@@ -54,6 +54,7 @@ https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&e
 
 ## Sprints
 ### semana 21 / 25 abril
+- foi criado o banco de dados com base na video aula sobre o tema, porém vai ser modificado
 
 1. Criação banco de dados
 2. Criação usuário
@@ -61,6 +62,7 @@ https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&e
 4. testes do mesmo
 
 ### semana 28 / 02 de maio
+Foi criado apenas a interface visual da criação de uma nova área, e utilizado mocks
 
 1. CRUD área
 2. Interface CRUD
@@ -71,6 +73,8 @@ https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&e
 
 ### semana 06 / 09
 
+Realocada para a semana 09 / 13 de junho
+
 1. CRUD produto
 2. Interface CRUD produto
 3. testes produto
@@ -80,26 +84,51 @@ https://viewer.diagrams.net/index.html?tags=%7B%7D&lightbox=1&highlight=0000ff&e
 
 ### semana 12 / 16
 
+Realocada para a semana 16 / 20 de junho
+
 1. CRUD cultivo
 2. Inteface cultivo
 3. Testes cultivos
 
 ### semana 19 / 23
 
+Realocada para a semana semana 23 / 27 de junho
+
 1. Refatorações e melhorias técnicas
 2. Testes de fluxo
 
 ### semana 26 / 30
+
+1. Implementação do ORM Drizzle
+2. CRUD usuários
+3. criação do CRUD de área
+
+### semana 02 / 06 junho
+
+1. CRUD produto
+2. Interface CRUD produto
+3. testes produto
+4. CRUD safra
+5. Interface safra
+6. Testes safra
+
+### semana 09 / 13
 
 1. Tela lateral de navegação funcional
 2. Adicionar calculo da estimativa
 3. Implementar visualização da estimativa com base em área e produto
 4. Testes para calculo de estimativa
 
-### semana 02 / 06 junho
+### semana 16 / 20
+
+1. CRUD cultivo
+2. Inteface cultivo
+3. Testes cultivos
+
+### semana 23 / 27
 
 1. Teste de fluxo completo
-2. Realizar refatorações
+2. Refatorações e melhorias técnicas
 
 ## Atualizações desde o último checkpoint
 
