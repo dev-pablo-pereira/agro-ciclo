@@ -3,15 +3,9 @@ import { Stack } from "expo-router";
 import { StyleSheet } from "react-native";
 
 import { useLocalMigrations } from "../hooks/useLocalMigrations";
-/*
-import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
-import * as SQLite from "expo-sqlite";*/
 
 export default function Layout() {
-  // const db = SQLite.openDatabaseSync("db");
-
   useLocalMigrations();
-  // useDrizzleStudio(db);
 
   return (
     <Stack>
