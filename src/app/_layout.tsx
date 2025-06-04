@@ -2,7 +2,11 @@ import { Icon } from "@rneui/themed";
 import { Stack } from "expo-router";
 import { StyleSheet } from "react-native";
 
+import { useLocalMigrations } from "../hooks/useLocalMigrations";
+
 export default function Layout() {
+  useLocalMigrations();
+
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -14,11 +18,14 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
-      <Stack.Screen name="area" options={{
-        title: "Área",
-        headerStyle: styles.headerStyle,
-        headerRight: () => <Icon name="menu" type="feather" />,
-      }}/>
+      <Stack.Screen
+        name="area"
+        options={{
+          title: "Área",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
     </Stack>
   );
 }
