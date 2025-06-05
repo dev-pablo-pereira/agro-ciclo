@@ -12,6 +12,16 @@ export default function App() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
+
+  const validaUser = () => {
+    if (name === "" || password === "") {
+      setShowError(true);
+    } else {
+      createUser(name, password)
+      router.push("/home");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -28,11 +38,11 @@ export default function App() {
         secureText
         onChangeText={(val) => setPassword(val)}
       />
-      <CustomButtom
-        title="Salvar"
-        icon="save"
-        onPress={() => createUser(name, password)}
-      />
+
+      {showError && (
+        <Text style={styles.errorText}>Todos os campos devem ser preenchidos</Text>
+      )}
+      <CustomButtom title="Salvar" icon="save" onPress={() => validaUser()} />
     </View>
   );
 }
@@ -44,4 +54,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5F5F5",
   },
+  errorText: {
+    color: 'red'
+  }
 });
