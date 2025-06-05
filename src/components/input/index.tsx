@@ -7,6 +7,7 @@ interface CustomInputProps {
   secureText?: boolean;
   iconType?: string;
   iconName?: string;
+  onChangeText: (a: string) => void
 }
 
 export default function CustomInput({
@@ -15,6 +16,7 @@ export default function CustomInput({
   iconType,
   iconName,
   secureText,
+  onChangeText
 }: CustomInputProps) {
   return (
     <Input
@@ -25,6 +27,7 @@ export default function CustomInput({
         labelStyle={styles.label}
         placeholderTextColor={'white'}
         placeholder={placeholder}
+        onChangeText={onChangeText}
         label={label}
         secureTextEntry={secureText}
         rightIcon={
