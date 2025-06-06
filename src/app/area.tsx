@@ -15,7 +15,7 @@ export default function Area() {
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
-        <CustomInput label="Nome:" placeholder="Área 1" />
+        <CustomInput label="Nome:" placeholder="Área 1" onChangeText={()=>{}}/>
 
         <View style={styles.row}>
           <Text style={styles.label}>Cor área:</Text>
