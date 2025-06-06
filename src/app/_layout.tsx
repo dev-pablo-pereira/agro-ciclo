@@ -10,7 +10,7 @@ export default function Layout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="newUser" options={{ headerShown: false }} />
+      <Stack.Screen name="newUser" options={{title: "Novo Usuário"}}/>
       <Stack.Screen
         name="home"
         options={{
