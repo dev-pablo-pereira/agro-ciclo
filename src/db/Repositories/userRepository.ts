@@ -5,9 +5,15 @@ export async function createUser(name: string, password: string) {
   await db.insert(users).values([
     {
       name: name,
-      password: password
+      password: password,
     },
-  ]),
-  console.log("usuario criado");
-  ;
+  ]);
+}
+
+export async function getUserByName(name: string) {
+  const user = await db.query.users.findFirst({
+    where: (users, { eq }) => eq(users.name, name),
+  });
+
+  return user;
 }
