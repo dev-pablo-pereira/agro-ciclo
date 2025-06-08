@@ -39,3 +39,9 @@ export const harvests = sqliteTable("harvests", {
   start: text().notNull(), // ver como adidionar o tipo data
   end: text().notNull(),
 });
+
+export const cultivations = sqliteTable("cultivations", {
+  id: int().primaryKey({ autoIncrement: true }),
+  id_area: int().references(() => areas.id),
+  id_product: int().references(() => products.id),
+});
