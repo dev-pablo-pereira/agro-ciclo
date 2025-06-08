@@ -1,4 +1,4 @@
-import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { int, sqliteTable, text, } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: int().primaryKey({ autoIncrement: true }),
@@ -30,4 +30,12 @@ export const products = sqliteTable("products", {
   spacing: int().notNull(),
   germination: int().notNull(),
   population_ha: int().notNull(),
+});
+
+export const harvests = sqliteTable("harvests", {
+  id: int().primaryKey({autoIncrement:true}),
+  name: text().notNull(),
+  season: text().notNull(),
+  start: text().notNull(), // ver como adidionar o tipo data
+  end: text().notNull(),
 });
