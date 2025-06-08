@@ -23,6 +23,7 @@
     "expo-file-system": "~18.0.12",
     "expo-leaflet": "^1.0.3",
     "expo-linking": "~7.0.5",
+    "expo-location": "~18.0.10",
     "expo-router": "~4.0.21",
     "expo-sqlite": "~15.1.4",
     "expo-status-bar": "~2.0.1",
