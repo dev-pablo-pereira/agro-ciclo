@@ -7,15 +7,21 @@ import { useState } from "react";
 import CardLocation from "../components/cardLocation";
 import { useRouter } from "expo-router";
 import { locations } from "../mocks/Locations";
+import { useCurrentLocation } from "../hooks/currentLocation";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
+  const { location, getCurrentLocation } = useCurrentLocation();
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
-        <CustomInput label="Nome:" placeholder="Área 1" onChangeText={()=>{}}/>
+        <CustomInput
+          label="Nome:"
+          placeholder="Área 1"
+          onChangeText={() => {}}
+        />
 
         <View style={styles.row}>
           <Text style={styles.label}>Cor área:</Text>
@@ -28,7 +34,7 @@ export default function Area() {
         <CustomButtom
           title="Marcar"
           type="evilIcons"
-          onPress={() => console.log("Marcar")}
+          onPress={() => getCurrentLocation()}
         />
 
         <View style={styles.containerList}>
@@ -39,7 +45,7 @@ export default function Area() {
 
         <CustomButtom
           title="Salvar área"
-          onPress={() => router.navigate('/home')}
+          onPress={() => router.navigate("/home")}
         />
       </ScrollView>
 
