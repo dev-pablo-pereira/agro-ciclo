@@ -6,7 +6,6 @@ import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
 import CardLocation from "../components/cardLocation";
 import { useRouter } from "expo-router";
-import { locations } from "../mocks/Locations";
 import { useCurrentLocation } from "../hooks/currentLocation";
 
 export default function Area() {
@@ -37,11 +36,7 @@ export default function Area() {
           onPress={() => getCurrentLocation()}
         />
 
-        <View style={styles.containerList}>
-          {locations.map((item, index) => (
-            <CardLocation key={index} lat={item.lat} long={item.long} />
-          ))}
-        </View>
+        <View style={styles.containerList}></View>
 
         <CustomButtom
           title="Salvar área"
