@@ -23,3 +23,11 @@ export const coordinates = sqliteTable("coordinates", {
   latitude: int().notNull(),
   longitude: int().notNull(),
 });
+
+export const products = sqliteTable("products", {
+  id: int().primaryKey({ autoIncrement: true }),
+  name: text().notNull(),
+  spacing: int().notNull(),
+  germination: int().notNull(),
+  population_ha: int().notNull(),
+});
