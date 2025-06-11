@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
 
   const { currentUser } = useCurrentUser();
-  const [userAreas, setUserAreas] = useState([{}])
+  const [userAreas, setUserAreas] = useState<any[]>([]);
 
   const listAreas = async () => {
     if (currentUser !== null) {
@@ -47,7 +47,7 @@ export default function Home() {
             <CardArea
               title={item.name}
               dimension={0}
-              color={item.color}
+              color={item.color === "" ? "#F5F5F5" : item.color}
             />
           )}
           contentContainerStyle={styles.list}
