@@ -30,9 +30,19 @@ export default function Area() {
       setShowError(true);
     } else {
       const area = await createArea(currentUser, name, color);
-      
+      createLocation(area.id);
       router.push("/home");
     }
+  };
+
+  const createLocation = async (idArea: number) => {
+    for (const loc of locations) {
+    await createCoordinate(
+      idArea,
+      loc.coords.latitude,
+      loc.coords.longitude
+    );
+  }
   };
 
   return (
