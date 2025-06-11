@@ -11,6 +11,7 @@ import CardLocation from "../components/cardLocation";
 
 import { createArea } from "../db/Repositories/areaRepository";
 import useCurrentUser from "../states/currentUser";
+import { createCoordinate } from "../db/Repositories/coordinateRepository";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
@@ -20,7 +21,7 @@ export default function Area() {
   const [color, setColor] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const { location, getCurrentLocation } = useCurrentLocation();
+  const { locations, getCurrentLocation } = useCurrentLocation();
   const { currentUser } = useCurrentUser();
 
   // funcions
@@ -28,7 +29,8 @@ export default function Area() {
     if (name === "" || currentUser == null) {
       setShowError(true);
     } else {
-      await createArea(currentUser, name, color);
+      const area = await createArea(currentUser, name, color);
+      
       router.push("/home");
     }
   };
@@ -55,12 +57,13 @@ export default function Area() {
           type="evilIcons"
           onPress={() => getCurrentLocation()}
         />
-        {location && (
+        {locations.map((loc, index) => (
           <CardLocation
-            lat={location.coords.latitude}
-            long={location.coords.longitude}
+            key={index}
+            lat={loc.coords.latitude}
+            long={loc.coords.longitude}
           />
-        )}
+        ))}
 
         <View style={styles.containerList}></View>
 

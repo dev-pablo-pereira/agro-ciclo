@@ -2,23 +2,23 @@ import * as Location from "expo-location";
 import { useState, useCallback } from "react";
 
 export function useCurrentLocation() {
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [locations, setLocations] = useState<Location.LocationObject[]>([]);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const getCurrentLocation = useCallback(async () => {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
+        setErrorMsg("Permissão de localização negada");
         return;
       }
 
       const loc = await Location.getCurrentPositionAsync({});
-      setLocation(loc);
+      setLocations((prev) => [...prev, loc]);
     } catch (error) {
       setErrorMsg("Não foi possível obter a localização");
     }
   }, []);
 
-  return { location, errorMsg, getCurrentLocation };
+  return { locations, errorMsg, getCurrentLocation };
 }
