@@ -7,6 +7,7 @@ import { Button } from "@rneui/base";
 import { getUserByName } from "../db/Repositories/userRepository";
 import { useState } from "react";
 import { Text } from "@rneui/themed";
+import useCurrentUser from "../states/currentUser";
 
 export default function App() {
   const router = useRouter();
@@ -15,11 +16,13 @@ export default function App() {
   const [showError, setShowError] = useState(false);
   const [userNotFound, setUserNotFound] = useState(false);
 
+  const { addCurrentUser } = useCurrentUser();
+
   const userPresent = async () => {
     try {
       const userFound = await getUserByName(user);
       if (userFound !== undefined) {
-        verifyCredentials(userFound.password);
+        verifyCredentials(userFound.password, userFound.id);
       } else {
         setUserNotFound(true);
       }
@@ -28,8 +31,9 @@ export default function App() {
     }
   };
 
-  const verifyCredentials = (senha: string) => {
+  const verifyCredentials = (senha: string, idUser: number) => {
     if (senha === password) {
+      addCurrentUser(idUser)
       router.push("/home");
     } else {
       setShowError(true);
