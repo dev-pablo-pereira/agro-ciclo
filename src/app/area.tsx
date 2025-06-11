@@ -56,17 +56,15 @@ export default function Area() {
           onPress={() => getCurrentLocation()}
         />
         {location && (
-          <Text>
-            {`Lat: ${location.coords.latitude}, Lon: ${location.coords.longitude}`}
-          </Text>
+          <CardLocation
+            lat={location.coords.latitude}
+            long={location.coords.longitude}
+          />
         )}
 
         <View style={styles.containerList}></View>
 
-        <CustomButtom
-          title="Salvar área"
-          onPress={() => validaArea()}
-        />
+        <CustomButtom title="Salvar área" onPress={() => validaArea()} />
       </ScrollView>
 
       {showPickColor && (
