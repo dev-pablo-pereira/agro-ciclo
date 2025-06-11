@@ -1,25 +1,45 @@
 import { View, StyleSheet, ScrollView } from "react-native";
+import { Button, Text } from "@rneui/themed";
+import { useState } from "react";
+import { useRouter } from "expo-router";
+import { useCurrentLocation } from "../hooks/currentLocation";
+
 import CustomButtom from "../components/buttom";
 import CustomInput from "../components/input";
 import PickColor from "../components/pickColor";
-import { Button, Text } from "@rneui/themed";
-import { useState } from "react";
 import CardLocation from "../components/cardLocation";
-import { useRouter } from "expo-router";
-import { useCurrentLocation } from "../hooks/currentLocation";
+
+import { createArea } from "../db/Repositories/areaRepository";
+import useCurrentUser from "../states/currentUser";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
   const router = useRouter();
 
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
+  const [showError, setShowError] = useState(false);
+
   const { location, getCurrentLocation } = useCurrentLocation();
+  const { currentUser } = useCurrentUser();
+
+  // funcions
+  const validaArea = async () => {
+    if (name === "" || currentUser == null) {
+      setShowError(true);
+    } else {
+      await createArea(currentUser, name, color);
+      router.push("/home");
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
         <CustomInput
           label="Nome:"
           placeholder="Área 1"
-          onChangeText={() => {}}
+          onChangeText={(val) => setName(val)}
         />
 
         <View style={styles.row}>
@@ -35,12 +55,17 @@ export default function Area() {
           type="evilIcons"
           onPress={() => getCurrentLocation()}
         />
+        {location && (
+          <Text>
+            {`Lat: ${location.coords.latitude}, Lon: ${location.coords.longitude}`}
+          </Text>
+        )}
 
         <View style={styles.containerList}></View>
 
         <CustomButtom
           title="Salvar área"
-          onPress={() => router.navigate("/home")}
+          onPress={() => validaArea()}
         />
       </ScrollView>
 
