@@ -10,3 +10,7 @@ export async function createArea(idUser: number, name: string, color: string) {
     },
   ]);
 }
+export async function allArea(idUser: number) {
+  const result = await db.select().from(areas);
+  return result;
+}
