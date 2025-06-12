@@ -1,5 +1,7 @@
 import { ColorWheel } from "react-native-color-wheel";
 import { StyleSheet } from "react-native";
+import tinycolor from "tinycolor2";
+
 import useAddColor from "../../states/colorArea";
 
 export default function PickColor() {
@@ -8,7 +10,11 @@ export default function PickColor() {
   return (
     <ColorWheel
       initialColor="#ee0000"
-      onColorChangeComplete={(color) => addColor(color)}
+      onColorChangeComplete={(color) => {
+        const hex = tinycolor(color).toHexString();
+        console.log("Selecionou cor:", hex);
+        addColor(hex);
+      }}
       style={styles.wheel}
     />
   );
