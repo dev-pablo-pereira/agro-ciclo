@@ -12,17 +12,18 @@ import CardLocation from "../components/cardLocation";
 import { createArea } from "../db/Repositories/areaRepository";
 import useCurrentUser from "../states/currentUser";
 import { createCoordinate } from "../db/Repositories/coordinateRepository";
+import useAddColor from "../states/colorArea";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
   const router = useRouter();
 
   const [name, setName] = useState("");
-  const [color, setColor] = useState("");
   const [showError, setShowError] = useState(false);
 
   const { locations, getCurrentLocation } = useCurrentLocation();
   const { currentUser } = useCurrentUser();
+  const { color } = useAddColor()
 
   // funcions
   const validaArea = async () => {
@@ -57,7 +58,7 @@ export default function Area() {
         <View style={styles.row}>
           <Text style={styles.label}>Cor área:</Text>
           <Button
-            buttonStyle={[styles.colorButton, { backgroundColor: "#49B265" }]}
+            buttonStyle={[styles.colorButton, { backgroundColor: color|| "#49B265" }]}
             onPress={() => setShowPickColor(true)}
           />
         </View>

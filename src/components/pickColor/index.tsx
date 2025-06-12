@@ -1,15 +1,14 @@
 import { ColorWheel } from "react-native-color-wheel";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
+import useAddColor from "../../states/colorArea";
 
 export default function PickColor() {
-  const [currentColor, setCurrentColor] = useState();
+  const { addColor } = useAddColor();
 
   return (
     <ColorWheel
       initialColor="#ee0000"
-      onColorChange={(color) => console.log({ currentColor })}
-      onColorChangeComplete={(color) => setCurrentColor(color)}
+      onColorChangeComplete={(color) => addColor(color)}
       style={styles.wheel}
     />
   );
