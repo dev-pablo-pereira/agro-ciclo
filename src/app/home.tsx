@@ -5,8 +5,8 @@ import { FlatList } from "react-native";
 import { useRouter } from "expo-router";
 
 import useCurrentUser from "../states/currentUser";
-import { allArea } from "../db/Repositories/areaRepository";
-import { Text } from "@rneui/themed";
+import { allArea, deleteArea } from "../db/Repositories/areaRepository";
+import { Button, Text } from "@rneui/themed";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -18,9 +18,14 @@ export default function Home() {
   const listAreas = async () => {
     if (currentUser !== null) {
       const listAreas = await allArea(currentUser);
-      
-      setUserAreas(listAreas)
+
+      setUserAreas(listAreas);
     }
+  };
+
+  const deleteUserArea = async (idArea: number) => {
+    await deleteArea(idArea);
+    setUserAreas(prev => prev.filter(area => area.id !== idArea))
   };
 
   useEffect(() => {
@@ -44,11 +49,17 @@ export default function Home() {
           data={userAreas}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <CardArea
-              title={item.name}
-              dimension={0}
-              color={item.color === "" ? "#F5F5F5" : item.color}
-            />
+            <View>
+              <Button
+                title={"delete"}
+                onPress={async () => await deleteUserArea(item.id)}
+              />
+              <CardArea
+                title={item.name}
+                dimension={0}
+                color={item.color === "" ? "#F5F5F5" : item.color}
+              />
+            </View>
           )}
           contentContainerStyle={styles.list}
           showsVerticalScrollIndicator={false}
