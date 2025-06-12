@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { areas } from "../schema";
 
@@ -21,4 +22,8 @@ export async function allArea(idUser: number) {
     where: (areas, { eq }) => eq(areas.id_user, idUser),
   });
   return result;
+}
+
+export async function deleteArea(idArea: number) {
+  await db.delete(areas).where(eq(areas.id, idArea));
 }
