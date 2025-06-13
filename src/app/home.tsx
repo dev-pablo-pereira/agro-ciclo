@@ -25,7 +25,7 @@ export default function Home() {
 
   const deleteUserArea = async (idArea: number) => {
     await deleteArea(idArea);
-    setUserAreas(prev => prev.filter(area => area.id !== idArea))
+    setUserAreas((prev) => prev.filter((area) => area.id !== idArea));
   };
 
   useEffect(() => {
@@ -54,11 +54,16 @@ export default function Home() {
                 title={"delete"}
                 onPress={async () => await deleteUserArea(item.id)}
               />
-              <CardArea
-                title={item.name}
-                dimension={0}
-                color={item.color === "" ? "#F5F5F5" : item.color}
-              />
+              <Button
+                type="clear"
+                onPress={() => router.push(`/editArea/${item.id}`)}
+              >
+                <CardArea
+                  title={item.name}
+                  dimension={0}
+                  color={item.color === "" ? "#F5F5F5" : item.color}
+                />
+              </Button>
             </View>
           )}
           contentContainerStyle={styles.list}
