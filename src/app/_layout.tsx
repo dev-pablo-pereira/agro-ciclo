@@ -27,6 +27,14 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
+      <Stack.Screen
+        name="editArea/[id]"
+        options={{
+          title: "Edição da Área",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
     </Stack>
   );
 }
