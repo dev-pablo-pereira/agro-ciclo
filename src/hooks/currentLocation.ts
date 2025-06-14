@@ -20,5 +20,9 @@ export function useCurrentLocation() {
     }
   }, []);
 
-  return { locations, errorMsg, getCurrentLocation };
+  const removeLocation = (index: number) => {
+    setLocations((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  return { locations, errorMsg, getCurrentLocation, removeLocation };
 }
