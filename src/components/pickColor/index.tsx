@@ -2,23 +2,24 @@ import { ColorWheel } from "react-native-color-wheel";
 import { StyleSheet } from "react-native";
 import tinycolor from "tinycolor2";
 
-import useAddColor from "../../states/colorArea";
+type Props = {
+  onSelect: (color: string) => void;
+};
 
-export default function PickColor() {
-  const { addColor } = useAddColor();
-
+export default function PickColor({ onSelect }: Props) {
   return (
     <ColorWheel
       initialColor="#ee0000"
       onColorChangeComplete={(color) => {
         const hex = tinycolor(color).toHexString();
         console.log("Selecionou cor:", hex);
-        addColor(hex);
+        onSelect(hex);
       }}
       style={styles.wheel}
     />
   );
 }
+
 
 const styles = StyleSheet.create({
   wheel: {
