@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import CustomInput from "../../components/input";
-import { useLocalSearchParams } from "expo-router";
-import { getArea } from "../../db/Repositories/areaRepository";
+import { router, useLocalSearchParams } from "expo-router";
+import { editArea, getArea } from "../../db/Repositories/areaRepository";
 import { Button, Text } from "@rneui/themed";
-import { getAllCoordinate } from "../../db/Repositories/coordinateRepository";
+import {
+  createCoordinate,
+  getAllCoordinate,
+} from "../../db/Repositories/coordinateRepository";
 import CardLocation from "../../components/cardLocation";
+import CustomButtom from "../../components/buttom";
+import { useCurrentLocation } from "../../hooks/currentLocation";
+
+// types
+type Area = {
+  id: number;
+  id_user: number;
+  name: string;
+  color: string | null;
+};
 
 type Locations = {
   longitude: number;
@@ -15,19 +28,45 @@ type Locations = {
 export default function EditArea() {
   const { id } = useLocalSearchParams();
 
-  // exibe o pick color
+  const { locations, getCurrentLocation } = useCurrentLocation();
+
+  // exibe o pick colorsetInfoArea(infoData);
   const [showPickColor, setShowPickColor] = useState(false);
 
   // atributos area
+  const [infoArea, setInfoArea] = useState<Area>();
+
   const [name, setName] = useState("");
   const [colorArea, setColorArea] = useState("");
 
   // locations area
   const [locationsArea, setLocationsArea] = useState<Locations[]>([]);
 
+  // functions
+  const validaArea = async () => {
+    if (infoArea?.name !== name || infoArea?.color !== colorArea) {
+      await editArea(Number(id), name, colorArea);
+      createLocation(Number(id));
+    }
+
+    if (locations.length > 0) {
+      await createLocation(Number(id)); // grava as localizações novas
+    }
+
+    router.push("/home");
+  };
+
+  const createLocation = async (idArea: number) => {
+    for (const loc of locations) {
+      await createCoordinate(idArea, loc.coords.latitude, loc.coords.longitude);
+    }
+  };
+
+  // functions effect
   useEffect(() => {
     const infoData = async () => {
       const infoData = await getArea(Number(id));
+      setInfoArea(infoData);
       setName(infoData?.name || "");
       setColorArea(infoData?.color || "");
     };
@@ -44,7 +83,6 @@ export default function EditArea() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Button onPress={() => console.log(locationsArea)}>teste</Button>
       <CustomInput
         label="Nome:"
         value={name}
@@ -59,13 +97,25 @@ export default function EditArea() {
         />
       </View>
 
+      <CustomButtom
+        title="Marcar"
+        type="evilIcons"
+        onPress={() => getCurrentLocation()}
+      />
+
       {locationsArea.map((loc, index) => (
+        <CardLocation key={index} lat={loc.latitude} long={loc.longitude} />
+      ))}
+
+      {locations.map((loc, index) => (
         <CardLocation
           key={index}
-          lat={loc.latitude}
-          long={loc.longitude}
+          lat={loc.coords.latitude}
+          long={loc.coords.longitude}
         />
       ))}
+
+      <CustomButtom title="Salvar área" onPress={() => validaArea()} />
     </ScrollView>
   );
 }
