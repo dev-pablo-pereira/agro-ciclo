@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import CustomInput from "../components/input";
 import CustomButtom from "../components/buttom";
 
 export default function Product() {
   return (
-    <View>
+    <View style={style.container}>
       <CustomInput
         label="Produto"
         placeholder="Ex: Milho"
@@ -26,7 +26,18 @@ export default function Product() {
         placeholder="Ex: 85%"
         onChangeText={() => {}}
       />
-      <CustomButtom title="Salvar" icon="save" onPress={() => console.log("produto")} />
+      <CustomButtom
+        title="Salvar"
+        icon="save"
+        onPress={() => console.log("produto")}
+      />
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+});
