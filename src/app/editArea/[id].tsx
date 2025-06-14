@@ -1,37 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import CustomInput from "../../components/input";
 import { useLocalSearchParams } from "expo-router";
 import { getArea } from "../../db/Repositories/areaRepository";
-import { Button } from "@rneui/themed";
-
-type Area = {
-  id: number;
-  id_user: number;
-  name: string;
-  color: string | null;
-};
+import { Button, Text } from "@rneui/themed";
 
 export default function EditArea() {
   const { id } = useLocalSearchParams();
 
-  // salva os dados da area
-  const [infoArea, setInfoArea] = useState<Area>();
+  // exibe o pick color
+  const [showPickColor, setShowPickColor] = useState(false);
 
   const [name, setName] = useState("");
+  const [colorArea, setColorArea] = useState("");
 
   useEffect(() => {
     const infoData = async () => {
       const infoData = await getArea(Number(id));
-      setInfoArea(infoData);
       setName(infoData?.name || "");
+      setColorArea(infoData?.color || "");
     };
     infoData();
   }, [id]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <CustomInput label="Nome:" value={name} onChangeText={(val) => setName(val)} />
+      <CustomInput
+        label="Nome:"
+        value={name}
+        onChangeText={(val) => setName(val)}
+      />
+
+      <View style={styles.row}>
+        <Text style={styles.label}>Cor área:</Text>
+        <Button
+          buttonStyle={[
+            styles.colorButton,
+            { backgroundColor: colorArea},
+          ]}
+          onPress={() => setShowPickColor(true)}
+        />
+      </View>
     </ScrollView>
   );
 }
