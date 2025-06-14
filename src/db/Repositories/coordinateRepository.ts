@@ -14,3 +14,10 @@ export async function createCoordinate(
     },
   ]);
 }
+
+export async function getAllCoordinate(idArea: number) {
+  const result = await db.query.coordinates.findMany({
+    where: (coordinates, { eq }) => eq(coordinates.id_area, idArea),
+  });
+  return result;
+}
