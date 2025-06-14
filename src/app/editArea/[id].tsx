@@ -4,6 +4,13 @@ import CustomInput from "../../components/input";
 import { useLocalSearchParams } from "expo-router";
 import { getArea } from "../../db/Repositories/areaRepository";
 import { Button, Text } from "@rneui/themed";
+import { getAllCoordinate } from "../../db/Repositories/coordinateRepository";
+import CardLocation from "../../components/cardLocation";
+
+type Locations = {
+  longitude: number;
+  latitude: number;
+};
 
 export default function EditArea() {
   const { id } = useLocalSearchParams();
@@ -11,8 +18,12 @@ export default function EditArea() {
   // exibe o pick color
   const [showPickColor, setShowPickColor] = useState(false);
 
+  // atributos area
   const [name, setName] = useState("");
   const [colorArea, setColorArea] = useState("");
+
+  // locations area
+  const [locationsArea, setLocationsArea] = useState<Locations[]>([]);
 
   useEffect(() => {
     const infoData = async () => {
@@ -23,8 +34,17 @@ export default function EditArea() {
     infoData();
   }, [id]);
 
+  useEffect(() => {
+    const locationsArea = async () => {
+      const locations = await getAllCoordinate(Number(id));
+      setLocationsArea(locations);
+    };
+    locationsArea();
+  }, [id]);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Button onPress={() => console.log(locationsArea)}>teste</Button>
       <CustomInput
         label="Nome:"
         value={name}
@@ -34,13 +54,18 @@ export default function EditArea() {
       <View style={styles.row}>
         <Text style={styles.label}>Cor área:</Text>
         <Button
-          buttonStyle={[
-            styles.colorButton,
-            { backgroundColor: colorArea},
-          ]}
+          buttonStyle={[styles.colorButton, { backgroundColor: colorArea }]}
           onPress={() => setShowPickColor(true)}
         />
       </View>
+
+      {locationsArea.map((loc, index) => (
+        <CardLocation
+          key={index}
+          lat={loc.latitude}
+          long={loc.longitude}
+        />
+      ))}
     </ScrollView>
   );
 }
