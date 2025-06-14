@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { coordinates } from "../schema";
 
@@ -20,4 +21,8 @@ export async function getAllCoordinate(idArea: number) {
     where: (coordinates, { eq }) => eq(coordinates.id_area, idArea),
   });
   return result;
+}
+
+export async function deleteCoordinate(idCoordinate: number) {
+  await db.delete(coordinates).where(eq(coordinates.id, idCoordinate));
 }
