@@ -2,12 +2,17 @@ import { db } from "../db";
 import { users } from "../schema";
 
 export async function createUser(name: string, password: string) {
-  await db.insert(users).values([
-    {
-      name: name,
-      password: password,
-    },
-  ]);
+  const result = await db
+    .insert(users)
+    .values([
+      {
+        name: name,
+        password: password,
+      },
+    ])
+    .returning(); // Retorna os campos do usuário recém-criado
+
+  return result[0]; // Retorna o usuário completo
 }
 
 export async function getUserByName(name: string) {

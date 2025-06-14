@@ -7,6 +7,7 @@ import { Button, Text } from "@rneui/themed";
 import { useState } from "react";
 
 import { createUser } from "../db/Repositories/userRepository";
+import useCurrentUser from "../states/currentUser";
 
 export default function App() {
   const router = useRouter();
@@ -14,11 +15,15 @@ export default function App() {
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const validaUser = () => {
+  const { addCurrentUser } = useCurrentUser();
+
+  const validaUser = async () => {
     if (name === "" || password === "") {
       setShowError(true);
     } else {
-      createUser(name, password)
+      const user = await createUser(name, password);
+      console.log(user);
+    addCurrentUser(user.id)
       router.push("/home");
     }
   };
@@ -40,7 +45,9 @@ export default function App() {
       />
 
       {showError && (
-        <Text style={styles.errorText}>Todos os campos devem ser preenchidos</Text>
+        <Text style={styles.errorText}>
+          Todos os campos devem ser preenchidos
+        </Text>
       )}
       <CustomButtom title="Salvar" icon="save" onPress={() => validaUser()} />
     </View>
@@ -55,6 +62,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
   },
   errorText: {
-    color: 'red'
-  }
+    color: "red",
+  },
 });
