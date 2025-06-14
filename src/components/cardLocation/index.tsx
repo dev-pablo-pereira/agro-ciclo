@@ -5,10 +5,16 @@ import { View } from "react-native";
 export interface CardLocationProps {
   lat: number;
   long: number;
-  onPress?: () => void
+  onPress?: () => void;
+  deletable?: boolean;
 }
 
-export default function CardLocation({ lat, long, onPress}: CardLocationProps) {
+export default function CardLocation({
+  lat,
+  long,
+  onPress,
+  deletable,
+}: CardLocationProps) {
   return (
     <Card containerStyle={styles.container}>
       <View style={styles.row}>
@@ -16,14 +22,17 @@ export default function CardLocation({ lat, long, onPress}: CardLocationProps) {
           <Text style={styles.text}>Lat: {lat}</Text>
           <Text style={styles.text}>Long: {long}</Text>
         </View>
-        <Button
-        onPress={onPress}
-        type="clear"
-        icon={{
-          name:"trash-2",
-          type:"feather",
-          color:'#C25757'
-        }}/>
+        {deletable && (
+          <Button
+            onPress={onPress}
+            type="clear"
+            icon={{
+              name: "trash-2",
+              type: "feather",
+              color: "#C25757",
+            }}
+          />
+        )}
       </View>
     </Card>
   );
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  }
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 });
