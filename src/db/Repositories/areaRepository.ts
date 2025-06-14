@@ -12,9 +12,17 @@ export async function createArea(idUser: number, name: string, color: string) {
         color: color,
       },
     ])
-    .returning(); // Retorna os campos do usuário recém-criado
+    .returning(); // Retorna os campos do usuário recém-criado  
 
   return result[0];
+}
+
+export async function getArea(idArea: number) {
+  const result = await db.query.areas.findFirst({
+    where: (areas, { eq }) => eq(areas.id, idArea),
+  });
+  return result
+  
 }
 
 export async function allArea(idUser: number) {
