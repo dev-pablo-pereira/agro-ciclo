@@ -30,7 +30,8 @@ type Locations = {
 export default function EditArea() {
   const { id } = useLocalSearchParams();
 
-  const { locations, getCurrentLocation } = useCurrentLocation();
+  const { locations, getCurrentLocation, removeLocation } =
+    useCurrentLocation();
 
   // exibe o pick colorsetInfoArea(infoData);
   const [showPickColor, setShowPickColor] = useState(false);
@@ -119,6 +120,7 @@ export default function EditArea() {
           key={index}
           lat={loc.latitude}
           long={loc.longitude}
+          deletable={true}
           onPress={() => deleteCoordinateArea(loc.id)}
         />
       ))}
@@ -128,6 +130,8 @@ export default function EditArea() {
           key={index}
           lat={loc.coords.latitude}
           long={loc.coords.longitude}
+          onPress={() => removeLocation(index)}
+          deletable={true}
         />
       ))}
 

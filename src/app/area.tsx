@@ -21,9 +21,10 @@ export default function Area() {
   const [name, setName] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const { locations, getCurrentLocation } = useCurrentLocation();
+  const { locations, getCurrentLocation, removeLocation } =
+    useCurrentLocation();
   const { currentUser } = useCurrentUser();
-  const { color } = useAddColor()
+  const { color } = useAddColor();
 
   // funcions
   const validaArea = async () => {
@@ -38,12 +39,8 @@ export default function Area() {
 
   const createLocation = async (idArea: number) => {
     for (const loc of locations) {
-    await createCoordinate(
-      idArea,
-      loc.coords.latitude,
-      loc.coords.longitude
-    );
-  }
+      await createCoordinate(idArea, loc.coords.latitude, loc.coords.longitude);
+    }
   };
 
   return (
@@ -58,7 +55,10 @@ export default function Area() {
         <View style={styles.row}>
           <Text style={styles.label}>Cor área:</Text>
           <Button
-            buttonStyle={[styles.colorButton, { backgroundColor: color|| "#49B265" }]}
+            buttonStyle={[
+              styles.colorButton,
+              { backgroundColor: color || "#49B265" },
+            ]}
             onPress={() => setShowPickColor(true)}
           />
         </View>
@@ -73,6 +73,8 @@ export default function Area() {
             key={index}
             lat={loc.coords.latitude}
             long={loc.coords.longitude}
+            onPress={() => removeLocation(index)}
+            deletable={true}
           />
         ))}
 
