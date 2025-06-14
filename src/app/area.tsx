@@ -27,7 +27,7 @@ export default function Area() {
 
   // funcions
   const validaArea = async () => {
-    if (name === "" || currentUser == null) {
+    if (name === "" || currentUser == null || locations.length < 3) {
       setShowError(true);
     } else {
       const area = await createArea(currentUser, name, colorArea);
