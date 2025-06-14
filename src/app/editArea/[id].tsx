@@ -12,6 +12,8 @@ import {
 import CardLocation from "../../components/cardLocation";
 import CustomButtom from "../../components/buttom";
 import { useCurrentLocation } from "../../hooks/currentLocation";
+import PickColor from "../../components/pickColor";
+import useAddColor from "../../states/colorArea";
 
 // types
 type Area = {
@@ -35,6 +37,8 @@ export default function EditArea() {
 
   // exibe o pick colorsetInfoArea(infoData);
   const [showPickColor, setShowPickColor] = useState(false);
+
+  const { color, addColor } = useAddColor();
 
   // atributos area
   const [infoArea, setInfoArea] = useState<Area>();
@@ -72,7 +76,10 @@ export default function EditArea() {
     );
   };
 
-  const removeNewwCoordinate = () => {};
+  const handlePickColor = (selectedColor: string) => {
+    setColorArea(selectedColor); // atualiza a cor da área atual apenas
+    setShowPickColor(false);
+  };
 
   // functions effect
   useEffect(() => {
@@ -94,49 +101,67 @@ export default function EditArea() {
   }, [id]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <CustomInput
-        label="Nome:"
-        value={name}
-        onChangeText={(val) => setName(val)}
-      />
-
-      <View style={styles.row}>
-        <Text style={styles.label}>Cor área:</Text>
-        <Button
-          buttonStyle={[styles.colorButton, { backgroundColor: colorArea }]}
-          onPress={() => setShowPickColor(true)}
+    <View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <CustomInput
+          label="Nome:"
+          value={name}
+          onChangeText={(val) => setName(val)}
         />
-      </View>
 
-      <CustomButtom
-        title="Marcar"
-        type="evilIcons"
-        onPress={() => getCurrentLocation()}
-      />
+        <View style={styles.row}>
+          <Text style={styles.label}>Cor área:</Text>
+          <Button
+            buttonStyle={[
+              styles.colorButton,
+              { backgroundColor: colorArea || color },
+            ]}
+            onPress={() => setShowPickColor(true)}
+          />
+        </View>
 
-      {locationsArea.map((loc, index) => (
-        <CardLocation
-          key={index}
-          lat={loc.latitude}
-          long={loc.longitude}
-          deletable={true}
-          onPress={() => deleteCoordinateArea(loc.id)}
+        <CustomButtom
+          title="Marcar"
+          type="evilIcons"
+          onPress={() => getCurrentLocation()}
         />
-      ))}
 
-      {locations.map((loc, index) => (
-        <CardLocation
-          key={index}
-          lat={loc.coords.latitude}
-          long={loc.coords.longitude}
-          onPress={() => removeLocation(index)}
-          deletable={true}
-        />
-      ))}
+        {locationsArea.map((loc, index) => (
+          <CardLocation
+            key={index}
+            lat={loc.latitude}
+            long={loc.longitude}
+            deletable={true}
+            onPress={() => deleteCoordinateArea(loc.id)}
+          />
+        ))}
 
-      <CustomButtom title="Salvar área" onPress={() => validaArea()} />
-    </ScrollView>
+        {locations.map((loc, index) => (
+          <CardLocation
+            key={index}
+            lat={loc.coords.latitude}
+            long={loc.coords.longitude}
+            onPress={() => removeLocation(index)}
+            deletable={true}
+          />
+        ))}
+
+        <CustomButtom title="Salvar área" onPress={() => validaArea()} />
+      </ScrollView>
+
+      {showPickColor && (
+        <View style={styles.overlay}>
+          <View style={styles.pickerContainer}>
+            <PickColor onSelect={handlePickColor} />
+            <Button
+              title="Fechar"
+              buttonStyle={styles.closeButton}
+              onPress={() => setShowPickColor(false)}
+            />
+          </View>
+        </View>
+      )}
+    </View>
   );
 }
 
