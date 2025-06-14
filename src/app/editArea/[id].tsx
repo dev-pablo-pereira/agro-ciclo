@@ -6,6 +6,7 @@ import { editArea, getArea } from "../../db/Repositories/areaRepository";
 import { Button, Text } from "@rneui/themed";
 import {
   createCoordinate,
+  deleteCoordinate,
   getAllCoordinate,
 } from "../../db/Repositories/coordinateRepository";
 import CardLocation from "../../components/cardLocation";
@@ -21,6 +22,7 @@ type Area = {
 };
 
 type Locations = {
+  id: number;
   longitude: number;
   latitude: number;
 };
@@ -61,6 +63,15 @@ export default function EditArea() {
       await createCoordinate(idArea, loc.coords.latitude, loc.coords.longitude);
     }
   };
+
+  const deleteCoordinateArea = async (idLocation: number) => {
+    await deleteCoordinate(idLocation);
+    setLocationsArea((prev) =>
+      prev.filter((location) => location.id !== idLocation)
+    );
+  };
+
+  const removeNewwCoordinate = () => {};
 
   // functions effect
   useEffect(() => {
@@ -104,7 +115,12 @@ export default function EditArea() {
       />
 
       {locationsArea.map((loc, index) => (
-        <CardLocation key={index} lat={loc.latitude} long={loc.longitude} />
+        <CardLocation
+          key={index}
+          lat={loc.latitude}
+          long={loc.longitude}
+          onPress={() => deleteCoordinateArea(loc.id)}
+        />
       ))}
 
       {locations.map((loc, index) => (
