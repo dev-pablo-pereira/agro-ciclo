@@ -12,7 +12,6 @@ import CardLocation from "../components/cardLocation";
 import { createArea } from "../db/Repositories/areaRepository";
 import useCurrentUser from "../states/currentUser";
 import { createCoordinate } from "../db/Repositories/coordinateRepository";
-import useAddColor from "../states/colorArea";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
@@ -24,14 +23,14 @@ export default function Area() {
   const { locations, getCurrentLocation, removeLocation } =
     useCurrentLocation();
   const { currentUser } = useCurrentUser();
-  const { color } = useAddColor();
+  const [colorArea, setColorArea] = useState("");
 
   // funcions
   const validaArea = async () => {
     if (name === "" || currentUser == null) {
       setShowError(true);
     } else {
-      const area = await createArea(currentUser, name, color);
+      const area = await createArea(currentUser, name, colorArea);
       createLocation(area.id);
       router.push("/home");
     }
@@ -41,6 +40,11 @@ export default function Area() {
     for (const loc of locations) {
       await createCoordinate(idArea, loc.coords.latitude, loc.coords.longitude);
     }
+  };
+
+  const handlePickColor = (selectedColor: string) => {
+    setColorArea(selectedColor); // atualiza a cor da área atual apenas
+    setShowPickColor(false);
   };
 
   return (
@@ -57,7 +61,7 @@ export default function Area() {
           <Button
             buttonStyle={[
               styles.colorButton,
-              { backgroundColor: color || "#49B265" },
+              { backgroundColor: colorArea || "#49B265" },
             ]}
             onPress={() => setShowPickColor(true)}
           />
@@ -86,7 +90,7 @@ export default function Area() {
       {showPickColor && (
         <View style={styles.overlay}>
           <View style={styles.pickerContainer}>
-            <PickColor />
+            <PickColor  onSelect={handlePickColor} />
             <Button
               title="Fechar"
               buttonStyle={styles.closeButton}
