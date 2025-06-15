@@ -16,3 +16,8 @@ export async function create(
       population_ha: population_ha,
     });
 }
+
+export async function allProduct() {
+  const result = await db.select().from(products)
+  return result
+}
