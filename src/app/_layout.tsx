@@ -59,6 +59,22 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
+      <Stack.Screen
+        name="cultivation"
+        options={{
+          title: "Cultivos",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
+      <Stack.Screen
+        name="cultivation/new"
+        options={{
+          title: "Novo Cultivo",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
     </Stack>
   );
 }
