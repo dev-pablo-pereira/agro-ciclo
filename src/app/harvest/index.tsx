@@ -40,7 +40,7 @@ export default function index() {
       <FlatList
         data={harvests}
         renderItem={({ item }) => (
-          <Button>
+          <Button type="clear" onPress={()=> router.push(`/harvest/${item.id}`)}>
             <Card>
               <Card.Title>{item.name}</Card.Title>
               <Text>{item.season}</Text>
