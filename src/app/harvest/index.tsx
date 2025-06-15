@@ -40,13 +40,15 @@ export default function index() {
       <FlatList
         data={harvests}
         renderItem={({ item }) => (
-          <Card>
-            <Card.Title>{item.name}</Card.Title>
-            <Text>{item.season}</Text>
-            <Text>{item.start}</Text>
-            <Text>{item.end}</Text>
-            <Button onPress={() => deleteItem(item.id)}>Delete</Button>
-          </Card>
+          <Button>
+            <Card>
+              <Card.Title>{item.name}</Card.Title>
+              <Text>{item.season}</Text>
+              <Text>{item.start}</Text>
+              <Text>{item.end}</Text>
+              <Button onPress={() => deleteItem(item.id)}>Delete</Button>
+            </Card>
+          </Button>
         )}
       />
     </View>
