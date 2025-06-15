@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { products } from "../schema";
 
@@ -20,4 +21,8 @@ export async function create(
 export async function allProduct() {
   const result = await db.select().from(products)
   return result
+}
+
+export async function deleteProduct(id:number) {
+  await db.delete(products).where(eq(products.id, id))
 }
