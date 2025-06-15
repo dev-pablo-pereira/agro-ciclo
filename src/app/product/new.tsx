@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import CustomInput from "../components/input";
-import CustomButtom from "../components/buttom";
-import { create } from "../db/Repositories/productRepository";
+import CustomInput from "../../components/input";
+import CustomButtom from "../../components/buttom";
+import { create } from "../../db/Repositories/productRepository";
+import { router } from "expo-router";
 
-export default function Product() {
+export default function Index() {
   // atributos product
   const [name, setName] = useState("");
   const [populationHa, setPopulationHa] = useState<number>();
@@ -20,6 +21,7 @@ export default function Product() {
       germination !== undefined
     ) {
       create(name, populationHa, spacing, germination);
+      router.push("product")
     }
   };
 
