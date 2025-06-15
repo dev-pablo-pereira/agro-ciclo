@@ -28,6 +28,24 @@ export async function getProduct(id: number) {
   return result;
 }
 
+export async function editProduct(
+  id: number,
+  name: string,
+  spacing: number,
+  germination: number,
+  population_ha: number
+) {
+  await db
+    .update(products)
+    .set({
+      name: name,
+      spacing: spacing,
+      germination: germination,
+      population_ha: population_ha,
+    })
+    .where(eq(products.id, id));
+}
+
 export async function deleteProduct(id: number) {
   await db.delete(products).where(eq(products.id, id));
 }
