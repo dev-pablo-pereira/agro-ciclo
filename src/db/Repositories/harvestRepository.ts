@@ -17,3 +17,7 @@ export async function getAll() {
   const result = await db.select().from(harvests);
   return result;
 }
+
+export async function deleteHavest(id:number) {
+  db.delete(harvests).where(eq(harvests.id, id))
+}
