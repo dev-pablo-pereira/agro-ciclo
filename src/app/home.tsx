@@ -9,6 +9,10 @@ import { allArea, deleteArea } from "../db/Repositories/areaRepository";
 import { Button, Text } from "@rneui/themed";
 import { useEffect, useState } from "react";
 
+// dimensions
+import * as turf from "@turf/turf";
+import { getAllCoordinate } from "../db/Repositories/coordinateRepository";
+
 export default function Home() {
   const router = useRouter();
 
@@ -19,7 +23,25 @@ export default function Home() {
     if (currentUser !== null) {
       const listAreas = await allArea(currentUser);
 
-      setUserAreas(listAreas);
+      const areasWithDimensions = await Promise.all(
+        listAreas.map(async (area) => {
+          const coords = await getAllCoordinate(area.id);
+          if (coords.length < 3) return { ...area, dimension: 0 }; // precisa de no mínimo 3
+
+          const turfPoints = coords.map((coord) => [
+            coord.longitude,
+            coord.latitude,
+          ]);
+          turfPoints.push(turfPoints[0]); // fecha o polígono
+
+          const polygon = turf.polygon([turfPoints]);
+          const areaM2 = turf.area(polygon);
+
+          return { ...area, dimension: areaM2 };
+        })
+      );
+
+      setUserAreas(areasWithDimensions);
     }
   };
 
@@ -60,7 +82,7 @@ export default function Home() {
               >
                 <CardArea
                   title={item.name}
-                  dimension={0}
+                   dimension={item.dimension}
                   color={item.color === "" ? "#F5F5F5" : item.color}
                 />
               </Button>
