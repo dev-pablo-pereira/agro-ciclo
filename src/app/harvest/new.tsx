@@ -4,6 +4,7 @@ import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { newHarvest } from "../../db/Repositories/harvestRepository";
+import { router } from "expo-router";
 
 export default function New() {
   const [name, setName] = useState("");
@@ -47,6 +48,7 @@ export default function New() {
       const endStr = converteDataParaStringISO(end);
 
       await newHarvest(name, season, startStr, endStr);
+      router.push('/harvest')
     } else {
       alert('Todos os campos devem estar preenchidos')
     }
