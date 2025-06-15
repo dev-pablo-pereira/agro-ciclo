@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
-import { create, getProduct } from "../../db/Repositories/productRepository";
+import {
+  editProduct,
+  getProduct,
+} from "../../db/Repositories/productRepository";
 import { router, useLocalSearchParams } from "expo-router";
 
 type Product = {
@@ -19,9 +22,9 @@ export default function Index() {
 
   // atributos product
   const [name, setName] = useState("");
-  const [populationHa, setPopulationHa] = useState<number>();
-  const [spacing, setSpacing] = useState<number>();
-  const [germination, setGermination] = useState<number>();
+  const [populationHa, setPopulationHa] = useState<number>(0);
+  const [spacing, setSpacing] = useState<number>(0);
+  const [germination, setGermination] = useState<number>(0);
 
   const [productInfo, setProductInfo] = useState<Product>();
 
@@ -29,16 +32,32 @@ export default function Index() {
   useEffect(() => {
     const infoProduct = async () => {
       const product = await getProduct(Number(id));
-      setProductInfo(product)
-      if (product){
-        setName(product.name)
-        setPopulationHa(product.population_ha)
-        setSpacing(product.spacing)
-        setGermination(product.germination)
+      setProductInfo(product);
+      if (product) {
+        setName(product.name);
+        setPopulationHa(product.population_ha);
+        setSpacing(product.spacing);
+        setGermination(product.germination);
       }
     };
     infoProduct();
   }, [id]);
+
+  // verifica se ouve mudanças
+
+  const update = async () => {
+    if (productInfo) {
+      if (
+        productInfo.name !== name ||
+        productInfo.population_ha !== populationHa ||
+        productInfo.spacing !== spacing ||
+        productInfo.germination !== germination
+      ) {
+        await editProduct(Number(id), name, spacing, germination, populationHa);
+        router.push("product");
+      }
+    }
+  };
 
   return (
     <View style={style.container}>
@@ -66,7 +85,7 @@ export default function Index() {
         value={`${germination?.toString()}%`}
         onChangeText={(val) => setGermination(Number(val))}
       />
-      <CustomButtom title="Salvar" icon="save" onPress={() => {}} />
+      <CustomButtom title="Salvar" icon="save" onPress={() => update()} />
     </View>
   );
 }
