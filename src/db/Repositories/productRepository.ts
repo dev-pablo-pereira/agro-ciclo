@@ -8,21 +8,26 @@ export async function create(
   germination: number,
   population_ha: number
 ) {
-  await db
-    .insert(products)
-    .values({
-      name: name,
-      spacing: spacing,
-      germination: germination,
-      population_ha: population_ha,
-    });
+  await db.insert(products).values({
+    name: name,
+    spacing: spacing,
+    germination: germination,
+    population_ha: population_ha,
+  });
 }
 
 export async function allProduct() {
-  const result = await db.select().from(products)
-  return result
+  const result = await db.select().from(products);
+  return result;
 }
 
-export async function deleteProduct(id:number) {
-  await db.delete(products).where(eq(products.id, id))
+export async function getProduct(id: number) {
+  const result = await db.query.products.findFirst({
+    where: (products, { eq }) => eq(products.id, id),
+  });
+  return result;
+}
+
+export async function deleteProduct(id: number) {
+  await db.delete(products).where(eq(products.id, id));
 }
