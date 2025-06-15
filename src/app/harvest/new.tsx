@@ -3,6 +3,7 @@ import { View, Pressable, TextInput, Platform } from "react-native";
 import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { newHarvest } from "../../db/Repositories/harvestRepository";
 
 export default function New() {
   const [name, setName] = useState("");
@@ -11,7 +12,9 @@ export default function New() {
   const [end, setEnd] = useState<Date | null>(null);
 
   const [showPicker, setShowPicker] = useState(false);
-  const [currentPicker, setCurrentPicker] = useState<"start" | "end" | null>(null);
+  const [currentPicker, setCurrentPicker] = useState<"start" | "end" | null>(
+    null
+  );
 
   const toggleDatePicker = (field: "start" | "end") => {
     setCurrentPicker(field);
@@ -27,6 +30,25 @@ export default function New() {
       } else if (currentPicker === "end") {
         setEnd(selectedDate);
       }
+    }
+  };
+
+  const converteDataParaStringISO = (date: Date) => {
+    return date.toISOString().split("T")[0];
+  };
+
+  const createHarvest = async () => {
+    if (name !== "" && season !== "" && start && end) {
+      if (start > end) {
+        alert("A data de início deve ser anterior ou igual à data de fim.");
+        return;
+      }
+      const startStr = converteDataParaStringISO(start);
+      const endStr = converteDataParaStringISO(end);
+
+      await newHarvest(name, season, startStr, endStr);
+    } else {
+      alert('Todos os campos devem estar preenchidos')
     }
   };
 
@@ -54,9 +76,7 @@ export default function New() {
       {showPicker && (
         <DateTimePicker
           value={
-            currentPicker === "start"
-              ? start || new Date()
-              : end || new Date()
+            currentPicker === "start" ? start || new Date() : end || new Date()
           }
           mode="date"
           display="default"
@@ -64,7 +84,11 @@ export default function New() {
         />
       )}
 
-      <CustomButtom title="Salvar" icon="save" onPress={() => {}} />
+      <CustomButtom
+        title="Salvar"
+        icon="save"
+        onPress={() => createHarvest()}
+      />
     </View>
   );
 }
