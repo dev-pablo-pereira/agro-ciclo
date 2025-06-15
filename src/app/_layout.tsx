@@ -36,7 +36,7 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="product"
+        name="product/new"
         options={{
           title: "Novo Produto",
           headerStyle: styles.headerStyle,
