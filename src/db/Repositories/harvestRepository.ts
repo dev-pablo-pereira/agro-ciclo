@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db } from "../db";
-import { harvests } from "../schema";
+import { harvests, products } from "../schema";
 
 export async function newHarvest(
   name: string,
@@ -18,6 +18,13 @@ export async function getAll() {
   return result;
 }
 
-export async function deleteHavest(id:number) {
-  db.delete(harvests).where(eq(harvests.id, id))
+export async function getHarvest(id: number) {
+  const result = await db.query.harvests.findFirst({
+    where: (harvests, { eq }) => eq(harvests.id, id),
+  });
+  return result
+}
+
+export async function deleteHavest(id: number) {
+  await db.delete(harvests).where(eq(harvests.id, id));
 }
