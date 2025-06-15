@@ -12,3 +12,8 @@ export async function newHarvest(
     .insert(harvests)
     .values({ name: name, season: season, start: start, end: end });
 }
+
+export async function getAll() {
+  const result = await db.select().from(harvests);
+  return result;
+}
