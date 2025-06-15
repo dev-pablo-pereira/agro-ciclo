@@ -51,7 +51,14 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
-      
+      <Stack.Screen
+        name="harvest/new"
+        options={{
+          title: "Nova Safra",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
     </Stack>
   );
 }
