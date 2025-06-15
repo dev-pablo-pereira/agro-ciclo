@@ -5,7 +5,7 @@ import CustomButtom from "../../components/buttom";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
   getHarvest,
-  newHarvest,
+  editHarvest as editHarvestDb,
 } from "../../db/Repositories/harvestRepository";
 import { router, useLocalSearchParams } from "expo-router";
 
@@ -70,20 +70,38 @@ export default function New() {
     return date.toISOString().split("T")[0];
   };
 
-  const createHarvest = async () => {
-    if (name !== "" && season !== "" && start && end) {
-      if (start > end) {
-        alert("A data de início deve ser anterior ou igual à data de fim.");
-        return;
-      }
-      const startStr = converteDataParaStringISO(start);
-      const endStr = converteDataParaStringISO(end);
+  const handleSave = async () => {
+    if (!harvestInfo) return;
 
-      await newHarvest(name, season, startStr, endStr);
-      router.push("/harvest");
-    } else {
-      alert("Todos os campos devem estar preenchidos");
+    const startDate = start ?? new Date(startInfo);
+    const endDate = end ?? new Date(endInfo);
+
+    if (!name || !season || !startDate || !endDate) {
+      alert("Todos os campos devem estar preenchidos.");
+      return;
     }
+
+    if (startDate > endDate) {
+      alert("A data de início deve ser anterior ou igual à data de fim.");
+      return;
+    }
+
+    const startStr = converteDataParaStringISO(startDate);
+    const endStr = converteDataParaStringISO(endDate);
+
+    const hasChanges =
+      name !== harvestInfo.name ||
+      season !== harvestInfo.season ||
+      startStr !== harvestInfo.start ||
+      endStr !== harvestInfo.end;
+
+    if (!hasChanges) {
+      alert("Nenhuma alteração foi feita.");
+      return;
+    }
+
+    await editHarvestDb(harvestInfo.id, name, season, startStr, endStr);
+    router.push("/harvest");
   };
 
   return (
@@ -122,7 +140,9 @@ export default function New() {
       {showPicker && (
         <DateTimePicker
           value={
-            currentPicker === "start" ? start || new Date() : end || new Date()
+            currentPicker === "start"
+              ? start ?? (startInfo ? new Date(startInfo) : new Date())
+              : end ?? (endInfo ? new Date(endInfo) : new Date())
           }
           mode="date"
           display="default"
@@ -130,11 +150,7 @@ export default function New() {
         />
       )}
 
-      <CustomButtom
-        title="Salvar"
-        icon="save"
-        onPress={() => createHarvest()}
-      />
+      <CustomButtom title="Salvar" icon="save" onPress={handleSave} />
     </View>
   );
 }
