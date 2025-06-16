@@ -15,6 +15,7 @@ export async function newCultivation(
 export async function getAllCultivations() {
   const result = await db
     .select({
+      id_cultivation: cultivations.id,
       productName: products.name,
       areaName: areas.name,
     })
@@ -23,4 +24,8 @@ export async function getAllCultivations() {
     .innerJoin(areas, eq(cultivations.id_area, areas.id))
     .innerJoin(harvests, eq(cultivations.id_harvest, harvests.id));
   return result;
+}
+
+export async function deleteCultivation(id:number) {
+  await db.delete(cultivations).where( eq(cultivations.id, id))
 }

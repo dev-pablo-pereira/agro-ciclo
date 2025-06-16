@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import CustomButtom from "../../components/buttom";
 import { router } from "expo-router";
-import { getAllCultivations } from "../../db/Repositories/cultivationRepository";
+import { deleteCultivation, getAllCultivations } from "../../db/Repositories/cultivationRepository";
 import { FlatList } from "react-native";
 import { Button, Card, Text } from "@rneui/themed";
 
 type Cultivation = {
+  id_cultivation: number
   productName: string;
   areaName: string;
   harvestName?: string;
@@ -25,9 +26,12 @@ export default function index() {
     cultivations();
   }, []);
 
+  const deleteCul = async (id:number) => {
+    await deleteCultivation(id)
+    setListCultivations((prev) => prev.filter((item) => item.id_cultivation !== id));
+  }
   return (
     <View>
-      <Button onPress={() => console.log(listCultivations)}>teste</Button>
       <CustomButtom
         title="Novo"
         onPress={() => router.push("/cultivation/new")}
@@ -35,7 +39,6 @@ export default function index() {
 
       <FlatList
         data={listCultivations}
-        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <Card>
             <Card.Title>{item.productName}</Card.Title>
@@ -47,6 +50,7 @@ export default function index() {
               type="antdesign"
               onPress={() => {}}
             />
+            <Button onPress={() => deleteCul(item.id_cultivation)}>Delete</Button>
           </Card>
         )}
       />
