@@ -6,6 +6,8 @@ import { allArea } from "../../db/Repositories/areaRepository";
 import useCurrentUser from "../../states/currentUser";
 import { getAll } from "../../db/Repositories/harvestRepository";
 import CustomButtom from "../../components/buttom";
+import { newCultivation } from "../../db/Repositories/cultivationRepository";
+import { router } from "expo-router";
 
 type Product = {
   id: number;
@@ -33,8 +35,8 @@ type Harvest = {
 export default function New() {
   const { currentUser } = useCurrentUser();
 
-  const [product, setProduct] = useState<string>();
-  const [area, setArea] = useState<string>();
+  const [product, setProduct] = useState<number>();
+  const [area, setArea] = useState<number>();
   const [harvest, setHarvest] = useState<string>();
 
   const [listProducts, setListProducts] = useState<Product[]>([]);
@@ -69,6 +71,15 @@ export default function New() {
     harvests();
   }, []);
 
+  const create = async () => {
+    if (product && area) {
+      newCultivation(product, area);
+      router.push("/cultivation");
+    } else {
+      alert("Deve ter selecionado todos os campos");
+    }
+  };
+
   return (
     <View>
       <Picker
@@ -76,28 +87,28 @@ export default function New() {
         onValueChange={(itemValue) => setProduct(itemValue)}
       >
         {listProducts.map((item) => (
-          <Picker.Item label={item.name} value={item.name} />
+          <Picker.Item key={item.id} label={item.name} value={item.id} />
         ))}
       </Picker>
 
       <Picker
         selectedValue={area}
-        onValueChange={(itemValue) => setArea(itemValue)}
+        onValueChange={(itemValue, itemIndex) => setArea(itemValue)}
       >
         {listAreas.map((item) => (
-          <Picker.Item label={item.name} value={item.name} />
+          <Picker.Item key={item.id} label={item.name} value={item.id} />
         ))}
       </Picker>
 
       <Picker
         selectedValue={harvest}
-        onValueChange={(itemValue) => setHarvest(itemValue)}
+        onValueChange={(itemValue, itemIndex) => setHarvest(itemValue)}
       >
         {listHarvests.map((item) => (
-          <Picker.Item label={item.name} value={item.name} />
+          <Picker.Item key={item.id} label={item.name} value={item.name} />
         ))}
       </Picker>
-      <CustomButtom title="teste" onPress={() => console.log(`${product} ${area}, ${harvest}`)} />
+      <CustomButtom title="teste" onPress={() => create()} />
     </View>
   );
 }
