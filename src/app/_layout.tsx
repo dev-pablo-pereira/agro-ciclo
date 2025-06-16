@@ -44,7 +44,7 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="harvest"
+        name="harvest/index"
         options={{
           title: "Safras",
           headerStyle: styles.headerStyle,
@@ -60,7 +60,7 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="cultivation"
+        name="cultivation/index"
         options={{
           title: "Cultivos",
           headerStyle: styles.headerStyle,
