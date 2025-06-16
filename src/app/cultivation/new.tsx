@@ -37,7 +37,7 @@ export default function New() {
 
   const [product, setProduct] = useState<number>();
   const [area, setArea] = useState<number>();
-  const [harvest, setHarvest] = useState<string>();
+  const [harvest, setHarvest] = useState<number>();
 
   const [listProducts, setListProducts] = useState<Product[]>([]);
   const [listAreas, setListAreas] = useState<Area[]>([]);
@@ -72,8 +72,8 @@ export default function New() {
   }, []);
 
   const create = async () => {
-    if (product && area) {
-      newCultivation(area, product);
+    if (product && area && harvest ) {
+      newCultivation(area, product, harvest);
       router.push("/cultivation");
     } else {
       alert("Deve ter selecionado todos os campos");
@@ -105,7 +105,7 @@ export default function New() {
         onValueChange={(itemValue, itemIndex) => setHarvest(itemValue)}
       >
         {listHarvests.map((item) => (
-          <Picker.Item key={item.id} label={item.name} value={item.name} />
+          <Picker.Item key={item.id} label={item.name} value={item.id} />
         ))}
       </Picker>
       <CustomButtom title="teste" onPress={() => create()} />
