@@ -13,6 +13,7 @@
     "@libsql/client": "^0.15.7",
     "@libsql/core": "^0.15.8",
     "@react-native-community/datetimepicker": "8.2.0",
+    "@react-native-picker/picker": "^2.11.0",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
     "@turf/turf": "^7.2.0",
