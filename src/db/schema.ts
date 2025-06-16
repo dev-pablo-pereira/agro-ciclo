@@ -42,6 +42,6 @@ export const harvests = sqliteTable("harvests", {
 
 export const cultivations = sqliteTable("cultivations", {
   id: int().primaryKey({ autoIncrement: true }),
-  id_area: int().references(() => areas.id),
-  id_product: int().references(() => products.id),
+  id_area: int().references(() => areas.id).notNull(),
+  id_product: int().references(() => products.id).notNull(),
 });
