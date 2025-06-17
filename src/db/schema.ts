@@ -30,6 +30,7 @@ export const products = sqliteTable("products", {
   spacing: int().notNull(),
   germination: int().notNull(),
   population_ha: int().notNull(),
+  pms: int().notNull(),
 });
 
 export const harvests = sqliteTable("harvests", {
