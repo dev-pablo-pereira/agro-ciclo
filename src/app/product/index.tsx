@@ -14,6 +14,7 @@ type Product = {
   name: string;
   spacing: number;
   germination: number;
+  pms: number
   population_ha: number;
 };
 
@@ -48,6 +49,7 @@ export default function index() {
                 <Text>População ha: {item.population_ha} mil</Text>
                 <Text>Espaçamento: {item.spacing} m</Text>
                 <Text>Germinação: {item.germination}%</Text>
+                <Text>PMS: {item.pms}%</Text>
               </>
               <>
                 <Button type="solid" onPress={() => deleteProduct(item.id)}>

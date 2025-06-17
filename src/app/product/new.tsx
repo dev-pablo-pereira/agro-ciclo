@@ -11,6 +11,7 @@ export default function Index() {
   const [populationHa, setPopulationHa] = useState<number>();
   const [spacing, setSpacing] = useState<number>();
   const [germination, setGermination] = useState<number>();
+  const [pms, setPms] = useState<number>();
 
   //functions
   const createProduct = () => {
@@ -18,7 +19,8 @@ export default function Index() {
       name !== "" &&
       populationHa !== undefined &&
       spacing !== undefined &&
-      germination !== undefined
+      germination !== undefined &&
+      pms !== undefined
     ) {
       create(name, populationHa, spacing, germination);
       router.push("product")
@@ -46,6 +48,11 @@ export default function Index() {
         label="Germinação"
         placeholder="Ex: 85%"
         onChangeText={(val) => setGermination(Number(val))}
+      />
+      <CustomInput
+        label="PMS (Peso de mil Sementes"
+        placeholder="Ex: 90g"
+        onChangeText={(val) => setPms(Number(val))}
       />
       <CustomButtom
         title="Salvar"

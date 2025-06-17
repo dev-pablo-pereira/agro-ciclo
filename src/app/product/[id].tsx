@@ -13,6 +13,7 @@ type Product = {
   name: string;
   spacing: number;
   germination: number;
+  pms: number;
   population_ha: number;
 };
 
@@ -25,6 +26,7 @@ export default function Index() {
   const [populationHa, setPopulationHa] = useState<number>(0);
   const [spacing, setSpacing] = useState<number>(0);
   const [germination, setGermination] = useState<number>(0);
+  const [pms, setPms] = useState<number>(0);
 
   const [productInfo, setProductInfo] = useState<Product>();
 
@@ -38,6 +40,7 @@ export default function Index() {
         setPopulationHa(product.population_ha);
         setSpacing(product.spacing);
         setGermination(product.germination);
+        setPms(product.pms);
       }
     };
     infoProduct();
@@ -51,7 +54,8 @@ export default function Index() {
         productInfo.name !== name ||
         productInfo.population_ha !== populationHa ||
         productInfo.spacing !== spacing ||
-        productInfo.germination !== germination
+        productInfo.germination !== germination ||
+        productInfo.pms !== pms
       ) {
         await editProduct(Number(id), name, spacing, germination, populationHa);
         router.push("product");
@@ -82,6 +86,12 @@ export default function Index() {
       <CustomInput
         label="Germinação"
         placeholder="Ex: 85%"
+        value={`${germination?.toString()}%`}
+        onChangeText={(val) => setGermination(Number(val))}
+      />
+      <CustomInput
+        label="PMS (Peso de mil Sementes"
+        placeholder="Ex: 90g%"
         value={`${germination?.toString()}%`}
         onChangeText={(val) => setGermination(Number(val))}
       />
