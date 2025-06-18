@@ -9,6 +9,7 @@ import { getArea } from "../../db/Repositories/areaRepository";
 import { getAllCoordinate } from "../../db/Repositories/coordinateRepository";
 
 import * as turf from "@turf/turf";
+import { ConvertM2ToHectares } from "../../hooks/areaCalc/areaCalc";
 
 type Product = {
   id: number;
@@ -41,6 +42,8 @@ export default function index() {
   const [infoCultivation, setInfoCultivation] = useState<Cultivation>();
   const [infoArea, setInfoArea] = useState<Area>();
   const [areaDimension, setAreaDimension] = useState<number>(0);
+  const [areaHectares, setAreaHectares] = useState<number>();
+  const [seedsTotal, setSeedsTotal] = useState<number>(0);
 
   useEffect(() => {
     const infoCultivation = async (id: number) => {
@@ -77,6 +80,21 @@ export default function index() {
     }
   };
 
+  useEffect(() => {
+    const areaM2ToHectare = (areaM2: number) => {
+      const result = ConvertM2ToHectares(areaM2);
+      setAreaHectares(result);
+    };
+    
+    areaM2ToHectare(areaDimension);
+  }, [areaDimension]);
+
+  useEffect(() => {
+    if (calcSeeds && areaHectares) {
+      setSeedsTotal(calcSeeds * areaHectares);
+    }
+  }, [calcSeeds, areaHectares]);
+
   const calc = async (id: number) => {
     const result = await KgPerHectare(id);
     if (result) {
@@ -86,18 +104,14 @@ export default function index() {
 
   return (
     <View>
-      <Button onPress={() => console.log(id)}>test</Button>
       <Card>
         <Card.Title>{infoProduct?.name}</Card.Title>
         <View
           style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
         >
           <Text>
-            Dimensão:{" "}
-            {new Intl.NumberFormat("pt-BR", {
-              maximumFractionDigits: 2,
-            }).format(areaDimension)}{" "}
-            m²
+            Sementes Por Ha: {Intl.NumberFormat("pt-BR").format(calcSeeds)} mil
+            kg/ha
           </Text>
         </View>
 
@@ -111,11 +125,30 @@ export default function index() {
             style={{ marginRight: 8 }}
           />
           <Text>
-            Sementes:{" "}
+            Sementes Por Ha:{" "}
             {new Intl.NumberFormat("pt-BR", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             }).format(calcSeeds)}{" "}
+            kg/ha
+          </Text>
+        </View>
+
+        <View
+          style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
+        >
+          <Icon
+            name="seedling"
+            type="font-awesome-5"
+            size={20}
+            style={{ marginRight: 8 }}
+          />
+          <Text>
+            Sementes Total:{" "}
+            {new Intl.NumberFormat("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(seedsTotal)}{" "}
             kg/ha
           </Text>
         </View>
