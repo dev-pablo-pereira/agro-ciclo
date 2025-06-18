@@ -29,6 +29,13 @@
       "when": 1750203526271,
       "tag": "0003_lyrical_salo",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1750205744545,
+      "tag": "0004_chief_klaw",
+      "breakpoints": true
     }
   ]
 }
