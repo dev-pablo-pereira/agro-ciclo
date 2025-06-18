@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
 import {
@@ -65,37 +65,39 @@ export default function Index() {
 
   return (
     <View style={style.container}>
-      <CustomInput
-        label="Produto"
-        placeholder="Ex: Milho"
-        value={name}
-        onChangeText={(val) => setName(val)}
-      />
-      <CustomInput
-        label="População por ha"
-        placeholder="Ex: 50 mil"
-        value={`${populationHa?.toString()} mil`}
-        onChangeText={(val) => setPopulationHa(Number(val))}
-      />
-      <CustomInput
-        label="Espaçamento em M"
-        placeholder="Ex: 0,80 m"
-        value={`${spacing?.toString()} m`}
-        onChangeText={(val) => setSpacing(Number(val))}
-      />
-      <CustomInput
-        label="Germinação"
-        placeholder="Ex: 85%"
-        value={`${germination?.toString()}%`}
-        onChangeText={(val) => setGermination(Number(val))}
-      />
-      <CustomInput
-        label="PMS (Peso de mil Sementes"
-        placeholder="Ex: 90g%"
-        value={`${germination?.toString()}%`}
-        onChangeText={(val) => setGermination(Number(val))}
-      />
-      <CustomButtom title="Salvar" icon="save" onPress={() => update()} />
+      <ScrollView>
+        <CustomInput
+          label="Produto"
+          placeholder="Ex: Milho"
+          value={name}
+          onChangeText={(val) => setName(val)}
+        />
+        <CustomInput
+          label="População por ha"
+          placeholder="Ex: 50 mil"
+          value={`${populationHa?.toString()} mil`}
+          onChangeText={(val) => setPopulationHa(Number(val))}
+        />
+        <CustomInput
+          label="Espaçamento em M"
+          placeholder="Ex: 0,80 m"
+          value={`${spacing?.toString()} m`}
+          onChangeText={(val) => setSpacing(Number(val))}
+        />
+        <CustomInput
+          label="Germinação"
+          placeholder="Ex: 85%"
+          value={`${germination?.toString()}%`}
+          onChangeText={(val) => setGermination(Number(val))}
+        />
+        <CustomInput
+          label="PMS (Peso de mil Sementes"
+          placeholder="Ex: 90g%"
+          value={`${germination?.toString()}%`}
+          onChangeText={(val) => setGermination(Number(val))}
+        />
+        <CustomButtom title="Salvar" icon="save" onPress={() => update()} />
+      </ScrollView>
     </View>
   );
 }
