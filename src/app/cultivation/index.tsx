@@ -11,6 +11,7 @@ import { Button, Card, Text } from "@rneui/themed";
 
 type Cultivation = {
   id_cultivation: number;
+  id_product: number;
   productName: string;
   areaName: string;
   harvestName?: string;
@@ -45,7 +46,10 @@ export default function index() {
       <FlatList
         data={listCultivations}
         renderItem={({ item }) => (
-          <Button onPress={() => router.push(`/cultivation/${item.id_cultivation}`)} type="clear">
+          <Button
+            onPress={() => router.push(`/cultivation/${item.id_cultivation}`)}
+            type="clear"
+          >
             <Card>
               <Card.Title>{item.productName}</Card.Title>
               <Text>{item.areaName}</Text>
@@ -54,7 +58,7 @@ export default function index() {
                 title="Estimativa"
                 icon="calculator"
                 type="antdesign"
-                onPress={() => {}}
+                onPress={() => router.push(`calc/${item.id_cultivation}`)}
               />
               <Button onPress={() => deleteCul(item.id_cultivation)}>
                 Delete
