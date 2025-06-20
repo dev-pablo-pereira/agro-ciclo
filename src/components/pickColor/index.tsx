@@ -1,19 +1,25 @@
 import { ColorWheel } from "react-native-color-wheel";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
+import tinycolor from "tinycolor2";
 
-export default function PickColor() {
-  const [currentColor, setCurrentColor] = useState();
+type Props = {
+  onSelect: (color: string) => void;
+};
 
+export default function PickColor({ onSelect }: Props) {
   return (
     <ColorWheel
       initialColor="#ee0000"
-      onColorChange={(color) => console.log({ currentColor })}
-      onColorChangeComplete={(color) => setCurrentColor(color)}
+      onColorChangeComplete={(color) => {
+        const hex = tinycolor(color).toHexString();
+        console.log("Selecionou cor:", hex);
+        onSelect(hex);
+      }}
       style={styles.wheel}
     />
   );
 }
+
 
 const styles = StyleSheet.create({
   wheel: {

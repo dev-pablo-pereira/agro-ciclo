@@ -1,39 +1,66 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import CustomInput from "../../components/input";
+import { router, useLocalSearchParams } from "expo-router";
+import { editArea, getArea } from "../../db/Repositories/areaRepository";
 import { Button, Text } from "@rneui/themed";
-import { useState } from "react";
-import { useRouter } from "expo-router";
-import { useCurrentLocation } from "../hooks/currentLocation";
+import {
+  createCoordinate,
+  deleteCoordinate,
+  getAllCoordinate,
+} from "../../db/Repositories/coordinateRepository";
+import CardLocation from "../../components/cardLocation";
+import CustomButtom from "../../components/buttom";
+import { useCurrentLocation } from "../../hooks/currentLocation";
+import PickColor from "../../components/pickColor";
+import useAddColor from "../../states/colorArea";
 
-import CustomButtom from "../components/buttom";
-import CustomInput from "../components/input";
-import PickColor from "../components/pickColor";
-import CardLocation from "../components/cardLocation";
+// types
+type Area = {
+  id: number;
+  id_user: number;
+  name: string;
+  color: string | null;
+};
 
-import { createArea } from "../db/Repositories/areaRepository";
-import useCurrentUser from "../states/currentUser";
-import { createCoordinate } from "../db/Repositories/coordinateRepository";
+type Locations = {
+  id: number;
+  longitude: number;
+  latitude: number;
+};
 
-export default function Area() {
-  const [showPickColor, setShowPickColor] = useState(false);
-  const router = useRouter();
-
-  const [name, setName] = useState("");
-  const [showError, setShowError] = useState(false);
+export default function EditArea() {
+  const { id } = useLocalSearchParams();
 
   const { locations, getCurrentLocation, removeLocation } =
     useCurrentLocation();
-  const { currentUser } = useCurrentUser();
+
+  // exibe o pick colorsetInfoArea(infoData);
+  const [showPickColor, setShowPickColor] = useState(false);
+
+  const { color, addColor } = useAddColor();
+
+  // atributos area
+  const [infoArea, setInfoArea] = useState<Area>();
+
+  const [name, setName] = useState("");
   const [colorArea, setColorArea] = useState("");
 
-  // funcions
+  // locations area
+  const [locationsArea, setLocationsArea] = useState<Locations[]>([]);
+
+  // functions
   const validaArea = async () => {
-    if (name === "" || currentUser == null || locations.length < 3) {
-      setShowError(true);
-    } else {
-      const area = await createArea(currentUser, name, colorArea);
-      createLocation(area.id);
-      router.push("/home");
+    if (infoArea?.name !== name || infoArea?.color !== colorArea) {
+      await editArea(Number(id), name, colorArea);
+      createLocation(Number(id));
     }
+
+    if (locations.length > 0) {
+      await createLocation(Number(id)); // grava as localizações novas
+    }
+
+    router.push("/home");
   };
 
   const createLocation = async (idArea: number) => {
@@ -42,17 +69,43 @@ export default function Area() {
     }
   };
 
+  const deleteCoordinateArea = async (idLocation: number) => {
+    await deleteCoordinate(idLocation);
+    setLocationsArea((prev) =>
+      prev.filter((location) => location.id !== idLocation)
+    );
+  };
+
   const handlePickColor = (selectedColor: string) => {
     setColorArea(selectedColor); // atualiza a cor da área atual apenas
     setShowPickColor(false);
   };
 
+  // functions effect
+  useEffect(() => {
+    const infoData = async () => {
+      const infoData = await getArea(Number(id));
+      setInfoArea(infoData);
+      setName(infoData?.name || "");
+      setColorArea(infoData?.color || "");
+    };
+    infoData();
+  }, [id]);
+
+  useEffect(() => {
+    const locationsArea = async () => {
+      const locations = await getAllCoordinate(Number(id));
+      setLocationsArea(locations);
+    };
+    locationsArea();
+  }, [id]);
+
   return (
-    <View style={styles.wrapper}>
+    <View>
       <ScrollView contentContainerStyle={styles.container}>
         <CustomInput
           label="Nome:"
-          placeholder="Área 1"
+          value={name}
           onChangeText={(val) => setName(val)}
         />
 
@@ -61,7 +114,7 @@ export default function Area() {
           <Button
             buttonStyle={[
               styles.colorButton,
-              { backgroundColor: colorArea || "#49B265" },
+              { backgroundColor: colorArea || color },
             ]}
             onPress={() => setShowPickColor(true)}
           />
@@ -72,6 +125,17 @@ export default function Area() {
           type="evilIcons"
           onPress={() => getCurrentLocation()}
         />
+
+        {locationsArea.map((loc, index) => (
+          <CardLocation
+            key={index}
+            lat={loc.latitude}
+            long={loc.longitude}
+            deletable={true}
+            onPress={() => deleteCoordinateArea(loc.id)}
+          />
+        ))}
+
         {locations.map((loc, index) => (
           <CardLocation
             key={index}
@@ -82,15 +146,13 @@ export default function Area() {
           />
         ))}
 
-        <View style={styles.containerList}></View>
-
         <CustomButtom title="Salvar área" onPress={() => validaArea()} />
       </ScrollView>
 
       {showPickColor && (
         <View style={styles.overlay}>
           <View style={styles.pickerContainer}>
-            <PickColor  onSelect={handlePickColor} />
+            <PickColor onSelect={handlePickColor} />
             <Button
               title="Fechar"
               buttonStyle={styles.closeButton}

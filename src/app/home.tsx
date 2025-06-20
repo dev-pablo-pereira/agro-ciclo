@@ -4,30 +4,94 @@ import CardArea from "../components/cardArea";
 import { FlatList } from "react-native";
 import { useRouter } from "expo-router";
 
-import { areas } from "../mocks/Areas";
+import useCurrentUser from "../states/currentUser";
+import { allArea, deleteArea } from "../db/Repositories/areaRepository";
+import { Button, Text } from "@rneui/themed";
+import { useEffect, useState } from "react";
+
+// dimensions
+import * as turf from "@turf/turf";
+import { getAllCoordinate } from "../db/Repositories/coordinateRepository";
 
 export default function Home() {
   const router = useRouter();
 
+  const { currentUser } = useCurrentUser();
+  const [userAreas, setUserAreas] = useState<any[]>([]);
+
+  const listAreas = async () => {
+    if (currentUser !== null) {
+      const listAreas = await allArea(currentUser);
+
+      const areasWithDimensions = await Promise.all(
+        listAreas.map(async (area) => {
+          const coords = await getAllCoordinate(area.id);
+          if (coords.length < 3) return { ...area, dimension: 0 }; // precisa de no mínimo 3
+
+          const turfPoints = coords.map((coord) => [
+            coord.longitude,
+            coord.latitude,
+          ]);
+          turfPoints.push(turfPoints[0]); // fecha o polígono
+
+          const polygon = turf.polygon([turfPoints]);
+          const areaM2 = turf.area(polygon);
+
+          return { ...area, dimension: areaM2 };
+        })
+      );
+
+      setUserAreas(areasWithDimensions);
+    }
+  };
+
+  const deleteUserArea = async (idArea: number) => {
+    await deleteArea(idArea);
+    setUserAreas((prev) => prev.filter((area) => area.id !== idArea));
+  };
+
+  useEffect(() => {
+    listAreas();
+  }, [currentUser]);
+
   return (
     <View style={styles.container}>
       <View style={styles.containerButtom}>
-        <CustomButtom title="Nova Área" icon="plus" type="entypo" onPress={ ()=> router.push('/area')} />
+        <CustomButtom
+          title="Nova Área"
+          icon="plus"
+          type="entypo"
+          onPress={() => router.push("/area")}
+        />
       </View>
-
-      <FlatList
-        data={areas}
-        keyExtractor={(_, index) => index.toString()}
-        renderItem={({ item }) => (
-          <CardArea
-            title={item.title}
-            dimension={item.dimension}
-            color={item.color}
-          />
-        )}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-      />
+      {userAreas === null ? (
+        <Text>Nenhuma área</Text>
+      ) : (
+        <FlatList
+          data={userAreas}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View>
+              <Button
+                title={"delete"}
+                onPress={async () => await deleteUserArea(item.id)}
+              />
+              <Button
+                type="clear"
+                onPress={() => router.push(`/editArea/${item.id}`)}
+              >
+                <CardArea
+                  title={item.name}
+                   dimension={item.dimension}
+                  color={item.color === "" ? "#F5F5F5" : item.color}
+                />
+              </Button>
+            </View>
+          )}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 }
