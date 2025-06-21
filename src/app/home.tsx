@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 // dimensions
 import * as turf from "@turf/turf";
 import { getAllCoordinate } from "../db/Repositories/coordinateRepository";
+import Small from "../components/buttom/small";
 
 export default function Home() {
   const router = useRouter();
@@ -63,6 +64,10 @@ export default function Home() {
           type="entypo"
           onPress={() => router.push("/area")}
         />
+        <View style={styles.lineButton}>
+          <Small title="Produtos" onPress={() => router.push("product")} />
+          <Small title="Cultivos" onPress={() => router.push("cultivation")} />
+        </View>
       </View>
       {userAreas === null ? (
         <Text>Nenhuma área</Text>
@@ -82,7 +87,7 @@ export default function Home() {
               >
                 <CardArea
                   title={item.name}
-                   dimension={item.dimension}
+                  dimension={item.dimension}
                   color={item.color === "" ? "#F5F5F5" : item.color}
                 />
               </Button>
@@ -106,9 +111,16 @@ const styles = StyleSheet.create({
   containerButtom: {
     alignItems: "center",
     width: "100%",
+    gap: 10,
   },
   list: {
     width: "100%",
     paddingHorizontal: 20,
+  },
+  lineButton: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "90%",
+    marginBottom:10
   },
 });
