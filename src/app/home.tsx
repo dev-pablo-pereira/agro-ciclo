@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 // dimensions
 import * as turf from "@turf/turf";
 import { getAllCoordinate } from "../db/Repositories/coordinateRepository";
+import Small from "../components/buttom/small";
 
 export default function Home() {
   const router = useRouter();
@@ -63,6 +64,10 @@ export default function Home() {
           type="entypo"
           onPress={() => router.push("/area")}
         />
+        <View style={styles.lineButton}>
+          <Small title="Produtos" onPress={() => router.push("product")} />
+          <Small title="Cultivos" onPress={() => router.push("cultivation")} />
+        </View>
       </View>
       {userAreas === null ? (
         <Text>Nenhuma área</Text>
@@ -72,20 +77,13 @@ export default function Home() {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <View>
-              <Button
-                title={"delete"}
-                onPress={async () => await deleteUserArea(item.id)}
+              <CardArea
+                title={item.name}
+                dimension={item.dimension}
+                color={item.color === "" ? "#F5F5F5" : item.color}
+                onDelete={() => deleteUserArea(item.id)}
+                onEdit={() => router.push(`/editArea/${item.id}`)}
               />
-              <Button
-                type="clear"
-                onPress={() => router.push(`/editArea/${item.id}`)}
-              >
-                <CardArea
-                  title={item.name}
-                   dimension={item.dimension}
-                  color={item.color === "" ? "#F5F5F5" : item.color}
-                />
-              </Button>
             </View>
           )}
           contentContainerStyle={styles.list}
@@ -106,9 +104,16 @@ const styles = StyleSheet.create({
   containerButtom: {
     alignItems: "center",
     width: "100%",
+    gap: 10,
   },
   list: {
     width: "100%",
     paddingHorizontal: 20,
+  },
+  lineButton: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "90%",
+    marginBottom: 10,
   },
 });

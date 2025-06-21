@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { allProduct } from "../../db/Repositories/productRepository";
 import { allArea } from "../../db/Repositories/areaRepository";
@@ -117,34 +117,55 @@ export default function Edit() {
   };
 
   return (
-    <View>
-      <Picker
-        selectedValue={product}
-        onValueChange={(itemValue) => setProduct(itemValue)}
-      >
-        {listProducts.map((item) => (
-          <Picker.Item key={item.id} label={item.name} value={item.id} />
-        ))}
-      </Picker>
+    <View style={styles.container}>
+      <View style={styles.selectContainer}>
+        <Picker
+          style={styles.select}
+          selectedValue={product}
+          onValueChange={(itemValue) => setProduct(itemValue)}
+        >
+          {listProducts.map((item) => (
+            <Picker.Item key={item.id} label={item.name} value={item.id} />
+          ))}
+        </Picker>
 
-      <Picker
-        selectedValue={area}
-        onValueChange={(itemValue, itemIndex) => setArea(itemValue)}
-      >
-        {listAreas.map((item) => (
-          <Picker.Item key={item.id} label={item.name} value={item.id} />
-        ))}
-      </Picker>
+        <Picker
+          style={styles.select}
+          selectedValue={area}
+          onValueChange={(itemValue, itemIndex) => setArea(itemValue)}
+        >
+          {listAreas.map((item) => (
+            <Picker.Item key={item.id} label={item.name} value={item.id} />
+          ))}
+        </Picker>
 
-      <Picker
-        selectedValue={harvest}
-        onValueChange={(itemValue, itemIndex) => setHarvest(itemValue)}
-      >
-        {listHarvests.map((item) => (
-          <Picker.Item key={item.id} label={item.name} value={item.id} />
-        ))}
-      </Picker>
+        <Picker
+          style={styles.select}
+          selectedValue={harvest}
+          onValueChange={(itemValue, itemIndex) => setHarvest(itemValue)}
+        >
+          {listHarvests.map((item) => (
+            <Picker.Item key={item.id} label={item.name} value={item.id} />
+          ))}
+        </Picker>
+      </View>
       <CustomButtom title="teste" onPress={() => edit()} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 30,
+  },
+  selectContainer: {
+    width: "90%",
+    marginBottom: 30,
+    gap: 20,
+  },
+  select: {
+    backgroundColor: "white",
+  },
+});

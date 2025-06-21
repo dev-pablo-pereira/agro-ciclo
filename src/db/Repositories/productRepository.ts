@@ -6,13 +6,17 @@ export async function create(
   name: string,
   spacing: number,
   germination: number,
-  population_ha: number
+  population_ha: number,
+  pms: number
 ) {
+  console.log(name, spacing, germination, population_ha + "PMS: " + pms );
+  
   await db.insert(products).values({
     name: name,
     spacing: spacing,
     germination: germination,
     population_ha: population_ha,
+    pms: pms
   });
 }
 

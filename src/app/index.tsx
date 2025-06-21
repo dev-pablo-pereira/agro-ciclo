@@ -58,7 +58,7 @@ export default function App() {
         onChangeText={(val) => setPassword(val)}
       />
 
-      <Button
+      <Button type="clear"
         title={"Não cadastrado"}
         onPress={() => router.push("/newUser")}
       />

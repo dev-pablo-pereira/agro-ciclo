@@ -23,6 +23,7 @@ export async function getAllCultivations() {
   const result = await db
     .select({
       id_cultivation: cultivations.id,
+      id_product: products.id,
       productName: products.name,
       areaName: areas.name,
     })
