@@ -8,6 +8,8 @@ import {
 } from "../../db/Repositories/cultivationRepository";
 import { FlatList } from "react-native";
 import { Button, Card, Text } from "@rneui/themed";
+import DeleteButton from "../../components/buttom/delete";
+import EditButton from "../../components/buttom/edit";
 
 type Cultivation = {
   id_cultivation: number;
@@ -46,30 +48,24 @@ export default function index() {
       <FlatList
         data={listCultivations}
         renderItem={({ item }) => (
-          <Button
-            onPress={() => router.push(`/cultivation/${item.id_cultivation}`)}
-            type="clear"
-          >
-            <Card containerStyle={styles.card}>
-              <Card.Title style={styles.title}>
-                Produto: {item.productName}
-              </Card.Title>
-              <Text style={styles.text}>Data: {item.harvestName}</Text>
-              <Text style={styles.text}>Safra: {item.harvestName}</Text>
-              <Text style={styles.text}>Área: {item.areaName}</Text>
-              <View style={styles.estimated}>
-                <CustomButtom
-                  title="Estimativa"
-                  icon="calculator"
-                  type="antdesign"
-                  onPress={() => router.push(`calc/${item.id_cultivation}`)}
-                />
-              </View>
-              <Button onPress={() => deleteCul(item.id_cultivation)}>
-                Delete
-              </Button>
-            </Card>
-          </Button>
+          <Card containerStyle={styles.card}>
+            <Card.Title style={styles.title}>
+              Produto: {item.productName}
+            </Card.Title>
+            <Text style={styles.text}>Data: {item.harvestName}</Text>
+            <Text style={styles.text}>Safra: {item.harvestName}</Text>
+            <Text style={styles.text}>Área: {item.areaName}</Text>
+            <View style={styles.estimated}>
+              <CustomButtom
+                title="Estimativa"
+                icon="calculator"
+                type="antdesign"
+                onPress={() => router.push(`calc/${item.id_cultivation}`)}
+              />
+            </View>
+            <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
+            <EditButton onPress={() => router.push(`/cultivation/${item.id_cultivation}`)} />
+          </Card>
         )}
       />
     </View>
@@ -98,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   estimated: {
-    width:'100%',
+    width: "100%",
     alignItems: "center",
-  }
+  },
 });
