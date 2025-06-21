@@ -57,20 +57,7 @@ export default function index() {
             <Text style={styles.text}>Data: {item.harvestName}</Text>
             <Text style={styles.text}>Safra: {item.harvestName}</Text>
             <Text style={styles.text}>Área: {item.areaName}</Text>
-            <View style={styles.estimated}>
-        renderItem={({ item }) => (
-          <Button onPress={() => router.push(`/cultivation/${item.id_cultivation}`)} type="clear">
-            <Card>
-              <Card.Title>{item.productName}</Card.Title>
-              <Text>{item.areaName}</Text>
-              <Text>{item.harvestName}</Text>
-              <CustomButtom
-                title="Estimativa"
-                icon="calculator"
-                type="antdesign"
-                onPress={() => router.push(`calc/${item.id_cultivation}`)}
-              />
-            </View>
+            <View style={styles.estimated}></View>
             <View style={styles.options}>
               <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
               <EditButton
@@ -80,13 +67,6 @@ export default function index() {
               />
             </View>
           </Card>
-                onPress={() => {}}
-              />
-              <Button onPress={() => deleteCul(item.id_cultivation)}>
-                Delete
-              </Button>
-            </Card>
-          </Button>
         )}
       />
     </View>
@@ -99,10 +79,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 20,
   },
-  list: { 
+  list: {
     marginTop: 20,
-    marginBottom: 20
-   },
+    marginBottom: 20,
+  },
   card: {
     backgroundColor: "#8D6E63",
     width: "100%",
