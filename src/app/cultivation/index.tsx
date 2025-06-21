@@ -57,7 +57,7 @@ export default function index() {
               <Text style={styles.text}>Data: {item.harvestName}</Text>
               <Text style={styles.text}>Safra: {item.harvestName}</Text>
               <Text style={styles.text}>Área: {item.areaName}</Text>
-              <View>
+              <View style={styles.estimated}>
                 <CustomButtom
                   title="Estimativa"
                   icon="calculator"
@@ -97,4 +97,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 5,
   },
+  estimated: {
+    width:'100%',
+    alignItems: "center",
+  }
 });
