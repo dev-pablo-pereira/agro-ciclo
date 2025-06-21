@@ -75,6 +75,14 @@ export default function Layout() {
           headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
+      <Stack.Screen
+        name="cultivation/[id]"
+        options={{
+          title: "Edição do cultivo",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
     </Stack>
   );
 }
