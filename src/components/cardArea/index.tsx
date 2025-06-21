@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import ColorArea from "../colorArea";
 import DeleteButton from "../buttom/delete";
 import EditButton from "../buttom/edit";
+import { line } from "drizzle-orm/pg-core";
 
 export interface CardAreaProps {
   title: string;
@@ -22,7 +23,7 @@ export default function CardArea({
   return (
     <Card containerStyle={styles.container}>
       <Card.Title style={styles.title}>{title}</Card.Title>
-      <View style={styles.containerBody}>
+      <View style={styles.line}>
         <View>
           <Text style={styles.text}>
             Dimensão:{" "}
@@ -52,10 +53,11 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 5,
     backgroundColor: "#8D6E63",
-    marginLeft: "15%",
   },
-  containerBody: {
+  line: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 25,
