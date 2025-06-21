@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CustomButtom from "../../components/buttom";
 import { router } from "expo-router";
 import {
@@ -37,9 +37,9 @@ export default function index() {
     );
   };
   return (
-    <View>
+    <View style={styles.container}>
       <CustomButtom
-        title="Novo"
+        title="Novo Cultivo"
         onPress={() => router.push("/cultivation/new")}
       />
 
@@ -50,16 +50,21 @@ export default function index() {
             onPress={() => router.push(`/cultivation/${item.id_cultivation}`)}
             type="clear"
           >
-            <Card>
-              <Card.Title>{item.productName}</Card.Title>
-              <Text>{item.areaName}</Text>
-              <Text>{item.harvestName}</Text>
-              <CustomButtom
-                title="Estimativa"
-                icon="calculator"
-                type="antdesign"
-                onPress={() => router.push(`calc/${item.id_cultivation}`)}
-              />
+            <Card containerStyle={styles.card}>
+              <Card.Title style={styles.title}>
+                Produto: {item.productName}
+              </Card.Title>
+              <Text style={styles.text}>Data: {item.harvestName}</Text>
+              <Text style={styles.text}>Safra: {item.harvestName}</Text>
+              <Text style={styles.text}>Área: {item.areaName}</Text>
+              <View>
+                <CustomButtom
+                  title="Estimativa"
+                  icon="calculator"
+                  type="antdesign"
+                  onPress={() => router.push(`calc/${item.id_cultivation}`)}
+                />
+              </View>
               <Button onPress={() => deleteCul(item.id_cultivation)}>
                 Delete
               </Button>
@@ -70,3 +75,26 @@ export default function index() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 20,
+  },
+  card: {
+    backgroundColor: "#8D6E63",
+    width: "90%",
+    borderRadius: 5,
+  },
+  title: {
+    fontSize: 25,
+    color: "white",
+    marginBottom: 6,
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    marginBottom: 5,
+  },
+});
