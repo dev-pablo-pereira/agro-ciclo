@@ -65,7 +65,10 @@ export default function Index() {
 
   return (
     <View style={style.container}>
-      <ScrollView>
+      <ScrollView
+        style={style.scrollView}
+        contentContainerStyle={style.scrollContent}
+      >
         <CustomInput
           label="Produto"
           placeholder="Ex: Milho"
@@ -96,8 +99,8 @@ export default function Index() {
           value={`${germination?.toString()}%`}
           onChangeText={(val) => setGermination(Number(val))}
         />
-        <CustomButtom title="Salvar" icon="save" onPress={() => update()} />
       </ScrollView>
+      <CustomButtom title="Salvar" icon="save" onPress={() => update()} />
     </View>
   );
 }
@@ -105,6 +108,14 @@ export default function Index() {
 const style = StyleSheet.create({
   container: {
     marginTop: 20,
+    alignItems: "center",
+  },
+  scrollView: {
+    height: "80%",
+    width: "100%",
+    marginBottom: 20,
+  },
+  scrollContent: {
     alignItems: "center",
   },
 });
