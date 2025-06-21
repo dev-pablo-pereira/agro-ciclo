@@ -36,6 +36,14 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
+        name="product/index"
+        options={{
+          title: "Lista de Produtos",
+          headerStyle: styles.headerStyle,
+          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
+      <Stack.Screen
         name="product/new"
         options={{
           title: "Novo Produto",
