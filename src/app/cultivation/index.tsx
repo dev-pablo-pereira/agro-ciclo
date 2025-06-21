@@ -47,6 +47,7 @@ export default function index() {
 
       <FlatList
         data={listCultivations}
+        style={styles.list}
         renderItem={({ item }) => (
           <Card containerStyle={styles.card}>
             <Card.Title style={styles.title}>
@@ -63,8 +64,14 @@ export default function index() {
                 onPress={() => router.push(`calc/${item.id_cultivation}`)}
               />
             </View>
-            <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
-            <EditButton onPress={() => router.push(`/cultivation/${item.id_cultivation}`)} />
+            <View style={styles.options}>
+              <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
+              <EditButton
+                onPress={() =>
+                  router.push(`/cultivation/${item.id_cultivation}`)
+                }
+              />
+            </View>
           </Card>
         )}
       />
@@ -78,9 +85,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 20,
   },
+  list: { 
+    marginTop: 20,
+    marginBottom: 20
+   },
   card: {
     backgroundColor: "#8D6E63",
-    width: "90%",
+    width: "100%",
     borderRadius: 5,
   },
   title: {
@@ -96,5 +107,13 @@ const styles = StyleSheet.create({
   estimated: {
     width: "100%",
     alignItems: "center",
+    marginTop: 10,
+  },
+  options: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+    width: "100%",
   },
 });
