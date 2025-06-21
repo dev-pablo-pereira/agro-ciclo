@@ -2,15 +2,23 @@ import { Button, Card, Icon, Text } from "@rneui/themed";
 import { View, StyleSheet } from "react-native";
 import ColorArea from "../colorArea";
 import DeleteButton from "../buttom/delete";
+import EditButton from "../buttom/edit";
 
 export interface CardAreaProps {
   title: string;
   dimension: number;
   color: string;
-  onDelete: () => void
+  onDelete: () => void;
+  onEdit: () => void;
 }
 
-export default function CardArea({ title, dimension, color, onDelete }: CardAreaProps) {
+export default function CardArea({
+  title,
+  dimension,
+  color,
+  onDelete,
+  onEdit,
+}: CardAreaProps) {
   return (
     <Card containerStyle={styles.container}>
       <Card.Title style={styles.title}>{title}</Card.Title>
@@ -31,10 +39,8 @@ export default function CardArea({ title, dimension, color, onDelete }: CardArea
           </View>
         </View>
         <View>
-          <DeleteButton onPress={onDelete}/>
-          <Button type="clear">
-            <Icon name="pencil" type="evilicon" />
-          </Button>
+          <DeleteButton onPress={onDelete} />
+          <EditButton onPress={onEdit} />
         </View>
       </View>
     </Card>

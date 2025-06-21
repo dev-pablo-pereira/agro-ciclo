@@ -82,6 +82,7 @@ export default function Home() {
                 dimension={item.dimension}
                 color={item.color === "" ? "#F5F5F5" : item.color}
                 onDelete={() => deleteUserArea(item.id)}
+                onEdit={() => router.push(`/editArea/${item.id}`)}
               />
             </View>
           )}
