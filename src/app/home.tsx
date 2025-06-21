@@ -77,20 +77,12 @@ export default function Home() {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <View>
-              <Button
-                title={"delete"}
-                onPress={async () => await deleteUserArea(item.id)}
+              <CardArea
+                title={item.name}
+                dimension={item.dimension}
+                color={item.color === "" ? "#F5F5F5" : item.color}
+                onDelete={() => deleteUserArea(item.id)}
               />
-              <Button
-                type="clear"
-                onPress={() => router.push(`/editArea/${item.id}`)}
-              >
-                <CardArea
-                  title={item.name}
-                  dimension={item.dimension}
-                  color={item.color === "" ? "#F5F5F5" : item.color}
-                />
-              </Button>
             </View>
           )}
           contentContainerStyle={styles.list}
@@ -121,6 +113,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "90%",
-    marginBottom:10
+    marginBottom: 10,
   },
 });
