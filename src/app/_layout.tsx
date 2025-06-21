@@ -10,13 +10,12 @@ export default function Layout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="newUser" options={{title: "Novo Usuário"}}/>
+      <Stack.Screen name="newUser" options={{ title: "Novo Usuário" }} />
       <Stack.Screen
         name="home"
         options={{
           title: "Home",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -24,7 +23,6 @@ export default function Layout() {
         options={{
           title: "Área",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -32,7 +30,6 @@ export default function Layout() {
         options={{
           title: "Edição da Área",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -40,7 +37,6 @@ export default function Layout() {
         options={{
           title: "Lista de Produtos",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -48,7 +44,13 @@ export default function Layout() {
         options={{
           title: "Novo Produto",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
+        }}
+      />
+      <Stack.Screen
+        name="product/[id]"
+        options={{
+          title: "Edição do Produto",
+          headerStyle: styles.headerStyle,
         }}
       />
       <Stack.Screen
@@ -56,7 +58,6 @@ export default function Layout() {
         options={{
           title: "Safras",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -64,7 +65,6 @@ export default function Layout() {
         options={{
           title: "Nova Safra",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -72,7 +72,6 @@ export default function Layout() {
         options={{
           title: "Cultivos",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -80,7 +79,6 @@ export default function Layout() {
         options={{
           title: "Novo Cultivo",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
       <Stack.Screen
@@ -88,7 +86,6 @@ export default function Layout() {
         options={{
           title: "Edição do cultivo",
           headerStyle: styles.headerStyle,
-          headerRight: () => <Icon name="menu" type="feather" />,
         }}
       />
     </Stack>
