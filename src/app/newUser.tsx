@@ -30,7 +30,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text h2>Novo Usuario</Text>
       <CustomInput
         placeholder="Pablito"
         label="Name"
