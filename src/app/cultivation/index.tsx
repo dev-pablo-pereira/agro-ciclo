@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+
 import CustomButtom from "../../components/buttom";
 import { router } from "expo-router";
 import {
@@ -57,6 +58,12 @@ export default function index() {
             <Text style={styles.text}>Safra: {item.harvestName}</Text>
             <Text style={styles.text}>Área: {item.areaName}</Text>
             <View style={styles.estimated}>
+        renderItem={({ item }) => (
+          <Button onPress={() => router.push(`/cultivation/${item.id_cultivation}`)} type="clear">
+            <Card>
+              <Card.Title>{item.productName}</Card.Title>
+              <Text>{item.areaName}</Text>
+              <Text>{item.harvestName}</Text>
               <CustomButtom
                 title="Estimativa"
                 icon="calculator"
@@ -73,6 +80,13 @@ export default function index() {
               />
             </View>
           </Card>
+                onPress={() => {}}
+              />
+              <Button onPress={() => deleteCul(item.id_cultivation)}>
+                Delete
+              </Button>
+            </Card>
+          </Button>
         )}
       />
     </View>
