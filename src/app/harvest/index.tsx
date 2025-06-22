@@ -9,6 +9,7 @@ import { StyleSheet } from "react-native";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
 import TextBody from "../../components/text";
+import CardInfo from "../../components/card";
 
 type Harvest = {
   id: number;
@@ -45,16 +46,17 @@ export default function index() {
         style={styles.list}
         data={harvests}
         renderItem={({ item }) => (
-          <Card containerStyle={styles.card}>
-            <Card.Title style={styles.title}>{item.name}</Card.Title>
-            <TextBody text={item.season} />
-            <TextBody text={item.start} />
-            <TextBody text={item.end} />
-            <View style={styles.options}>
-              <DeleteButton onPress={() => deleteItem(item.id)} />
-              <EditButton onPress={() => router.push(`/harvest/${item.id}`)} />
-            </View>
-          </Card>
+          <CardInfo
+            title={item.name}
+            bodyTexts={[
+              `Estação: ${item.season}`,
+              `Inicio: ${item.start}`,
+              `Fim: ${item.end}`,
+            ]}
+          >
+            <DeleteButton onPress={() => deleteItem(item.id)} />
+            <EditButton onPress={() => router.push(`/harvest/${item.id}`)} />
+          </CardInfo>
         )}
       />
     </View>

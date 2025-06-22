@@ -11,6 +11,7 @@ import { FlatList } from "react-native";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
 import TextBody from "../../components/text";
+import CardInfo from "../../components/card";
 
 type Product = {
   id: number;
@@ -46,26 +47,18 @@ export default function index() {
         style={styles.list}
         data={products}
         renderItem={({ item }) => (
-          <Button
-            type="clear"
-            onPress={() => router.push(`product/${item.id}`)}
+          <CardInfo
+            title={item.name}
+            bodyTexts={[
+              `População ha: ${item.population_ha} mil`,
+              `Espaçamento: ${item.spacing} m`,
+              `Germinação: ${item.germination}%`,
+              `PMS: ${item.pms}%`,
+            ]}
           >
-            <Card containerStyle={styles.card}>
-              <View>
-                <Card.Title style={styles.title}>{item.name}</Card.Title>
-                <TextBody text={`População ha: ${item.population_ha} mil`} />
-                <TextBody text={`Espaçamento: ${item.spacing} m`}/>
-                <TextBody text={`Germinação: ${item.germination}%`} />
-                <TextBody text={`PMS: ${item.pms}%`}/>
-              </View>
-              <View style={styles.options}>
-                <DeleteButton onPress={() => deleteProduct(item.id)} />
-                <EditButton
-                  onPress={() => router.push(`/product/${item.id}`)}
-                />
-              </View>
-            </Card>
-          </Button>
+            <DeleteButton onPress={() => deleteProduct(item.id)} />
+            <EditButton onPress={() => router.push(`/product/${item.id}`)} />
+          </CardInfo>
         )}
       />
     </View>
