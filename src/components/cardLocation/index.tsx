@@ -1,5 +1,5 @@
 import { Button, Card, Icon, Text } from "@rneui/themed";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { View } from "react-native";
 
 export interface CardLocationProps {

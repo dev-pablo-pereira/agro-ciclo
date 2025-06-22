@@ -1,4 +1,3 @@
-import { Button, Card, Text } from "@rneui/themed";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import CustomButtom from "../../components/buttom";

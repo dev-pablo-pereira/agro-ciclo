@@ -8,10 +8,8 @@ import {
   getAllCultivations,
 } from "../../db/Repositories/cultivationRepository";
 import { FlatList } from "react-native";
-import { Button, Card, Text } from "@rneui/themed";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
-import TextBody from "../../components/text";
 import CardCultivation from "../../components/cardCultivation";
 
 type Cultivation = {

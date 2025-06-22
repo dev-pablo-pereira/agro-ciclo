@@ -1,9 +1,8 @@
-import { Button, Card, Icon, Text } from "@rneui/themed";
+import { Card, Text } from "@rneui/themed";
 import { View, StyleSheet } from "react-native";
 import ColorArea from "../colorArea";
 import DeleteButton from "../buttom/delete";
 import EditButton from "../buttom/edit";
-import { line } from "drizzle-orm/pg-core";
 import TextBody from "../text";
 
 export interface CardAreaProps {

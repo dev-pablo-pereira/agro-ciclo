@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 
 import useCurrentUser from "../states/currentUser";
 import { allArea, deleteArea } from "../db/Repositories/areaRepository";
-import { Button, Text } from "@rneui/themed";
+import { Text } from "@rneui/themed";
 import { useEffect, useState } from "react";
 
 // dimensions

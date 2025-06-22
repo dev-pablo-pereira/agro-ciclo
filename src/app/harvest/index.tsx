@@ -3,12 +3,10 @@ import { View } from "react-native";
 import CustomButtom from "../../components/buttom";
 import { router } from "expo-router";
 import { deleteHavest, getAll } from "../../db/Repositories/harvestRepository";
-import { Card } from "@rneui/themed";
 import { FlatList } from "react-native";
 import { StyleSheet } from "react-native";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
-import TextBody from "../../components/text";
 import CardInfo from "../../components/card";
 
 type Harvest = {

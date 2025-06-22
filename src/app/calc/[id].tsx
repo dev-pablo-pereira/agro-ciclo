@@ -10,7 +10,6 @@ import { getAllCoordinate } from "../../db/Repositories/coordinateRepository";
 
 import * as turf from "@turf/turf";
 import { ConvertM2ToHectares } from "../../hooks/areaCalc/areaCalc";
-import TextBody from "../../components/text";
 
 type Product = {
   id: number;
