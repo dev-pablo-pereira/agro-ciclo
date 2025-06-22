@@ -58,7 +58,7 @@ export default function Area() {
         />
 
         <View style={styles.row}>
-          <TextBody text="Cor Área" />
+          <Text style={styles.label}>Cor Área</Text>
           <Button
             buttonStyle={[
               styles.colorButton,
