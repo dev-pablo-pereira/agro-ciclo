@@ -14,7 +14,7 @@ export default function CardInfo({ title, bodyTexts, children }: Props) {
     <Card containerStyle={styles.card}>
       <View>
         <Card.Title style={styles.title}>{title}</Card.Title>
-        {bodyTexts.map((text) => (
+        {bodyTexts.map((text, index) => (
             <TextBody text={text} />
         ))}
       </View>
