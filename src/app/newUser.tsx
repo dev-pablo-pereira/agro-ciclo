@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import CustomInput from "../components/input";
 import CustomButtom from "../components/buttom";
-import { Button, Text } from "@rneui/themed";
+import { Text } from "@rneui/themed";
 import { useState } from "react";
 
 import { createUser } from "../db/Repositories/userRepository";

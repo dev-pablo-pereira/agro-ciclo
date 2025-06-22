@@ -12,6 +12,7 @@ import CardLocation from "../components/cardLocation";
 import { createArea } from "../db/Repositories/areaRepository";
 import useCurrentUser from "../states/currentUser";
 import { createCoordinate } from "../db/Repositories/coordinateRepository";
+import TextBody from "../components/text";
 
 export default function Area() {
   const [showPickColor, setShowPickColor] = useState(false);
@@ -57,7 +58,7 @@ export default function Area() {
         />
 
         <View style={styles.row}>
-          <Text style={styles.label}>Cor área:</Text>
+          <TextBody text="Cor Área" />
           <Button
             buttonStyle={[
               styles.colorButton,

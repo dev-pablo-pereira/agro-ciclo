@@ -4,6 +4,7 @@ import ColorArea from "../colorArea";
 import DeleteButton from "../buttom/delete";
 import EditButton from "../buttom/edit";
 import { line } from "drizzle-orm/pg-core";
+import TextBody from "../text";
 
 export interface CardAreaProps {
   title: string;
@@ -33,7 +34,7 @@ export default function CardArea({
             m²
           </Text>
           <View style={styles.row}>
-            <Text style={styles.text}>Cor da Área</Text>
+            <TextBody text="Cor da Área"/>
             <View style={styles.colorWrapper}>
               <ColorArea color={color} />
             </View>

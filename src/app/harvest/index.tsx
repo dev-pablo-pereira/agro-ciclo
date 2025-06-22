@@ -3,11 +3,12 @@ import { View } from "react-native";
 import CustomButtom from "../../components/buttom";
 import { router } from "expo-router";
 import { deleteHavest, getAll } from "../../db/Repositories/harvestRepository";
-import { Button, Card, Text } from "@rneui/themed";
+import { Card } from "@rneui/themed";
 import { FlatList } from "react-native";
 import { StyleSheet } from "react-native";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
+import TextBody from "../../components/text";
 
 type Harvest = {
   id: number;
@@ -46,9 +47,9 @@ export default function index() {
         renderItem={({ item }) => (
           <Card containerStyle={styles.card}>
             <Card.Title style={styles.title}>{item.name}</Card.Title>
-            <Text style={styles.text}>{item.season}</Text>
-            <Text style={styles.text}>{item.start}</Text>
-            <Text style={styles.text}>{item.end}</Text>
+            <TextBody text={item.season} />
+            <TextBody text={item.start} />
+            <TextBody text={item.end} />
             <View style={styles.options}>
               <DeleteButton onPress={() => deleteItem(item.id)} />
               <EditButton onPress={() => router.push(`/harvest/${item.id}`)} />

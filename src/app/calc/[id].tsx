@@ -10,6 +10,7 @@ import { getAllCoordinate } from "../../db/Repositories/coordinateRepository";
 
 import * as turf from "@turf/turf";
 import { ConvertM2ToHectares } from "../../hooks/areaCalc/areaCalc";
+import TextBody from "../../components/text";
 
 type Product = {
   id: number;
@@ -85,7 +86,7 @@ export default function index() {
       const result = ConvertM2ToHectares(areaM2);
       setAreaHectares(result);
     };
-    
+
     areaM2ToHectare(areaDimension);
   }, [areaDimension]);
 
@@ -109,10 +110,12 @@ export default function index() {
         <View
           style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
         >
-          <Text>
-            Sementes Por Ha: {Intl.NumberFormat("pt-BR").format(calcSeeds)} mil
-            kg/ha
-          </Text>
+          <TextBody
+            text={`Sementes Por Ha: ${Intl.NumberFormat("pt-BR").format(
+              calcSeeds
+            )} mil
+            kg/ha`}
+          />
         </View>
 
         <View
@@ -124,14 +127,14 @@ export default function index() {
             size={20}
             style={{ marginRight: 8 }}
           />
-          <Text>
-            Sementes Por Ha:{" "}
-            {new Intl.NumberFormat("pt-BR", {
+          <TextBody
+            text={`Sementes Por Ha:${" "}
+            ${new Intl.NumberFormat("pt-BR", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             }).format(calcSeeds)}{" "}
-            kg/ha
-          </Text>
+            kg/ha`}
+          />
         </View>
 
         <View

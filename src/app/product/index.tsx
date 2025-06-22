@@ -10,6 +10,7 @@ import {
 import { FlatList } from "react-native";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
+import TextBody from "../../components/text";
 
 type Product = {
   id: number;
@@ -52,12 +53,10 @@ export default function index() {
             <Card containerStyle={styles.card}>
               <View>
                 <Card.Title style={styles.title}>{item.name}</Card.Title>
-                <Text style={styles.text}>
-                  População ha: {item.population_ha} mil
-                </Text>
-                <Text style={styles.text}>Espaçamento: {item.spacing} m</Text>
-                <Text style={styles.text}>Germinação: {item.germination}%</Text>
-                <Text style={styles.text}>PMS: {item.pms}%</Text>
+                <TextBody text={`População ha: ${item.population_ha} mil`} />
+                <TextBody text={`Espaçamento: ${item.spacing} m`}/>
+                <TextBody text={`Germinação: ${item.germination}%`} />
+                <TextBody text={`PMS: ${item.pms}%`}/>
               </View>
               <View style={styles.options}>
                 <DeleteButton onPress={() => deleteProduct(item.id)} />

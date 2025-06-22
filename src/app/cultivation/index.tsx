@@ -11,6 +11,7 @@ import { FlatList } from "react-native";
 import { Button, Card, Text } from "@rneui/themed";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
+import TextBody from "../../components/text";
 
 type Cultivation = {
   id_cultivation: number;
@@ -54,10 +55,17 @@ export default function index() {
             <Card.Title style={styles.title}>
               Produto: {item.productName}
             </Card.Title>
-            <Text style={styles.text}>Data: {item.harvestName}</Text>
-            <Text style={styles.text}>Safra: {item.harvestName}</Text>
-            <Text style={styles.text}>Área: {item.areaName}</Text>
-            <View style={styles.estimated}></View>
+            <TextBody text={`Data: ${item.harvestName}`} />
+            <TextBody text={`Safra: ${item.harvestName}`} />
+            <TextBody text={`Área: ${item.areaName}`} />
+            <View style={styles.estimated}>
+              <CustomButtom
+                title="Estimativa"
+                icon="calculator"
+                type="antdesign"
+                onPress={() => router.push(`calc/${item.id_cultivation}`)}
+              />
+            </View>
             <View style={styles.options}>
               <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
               <EditButton
