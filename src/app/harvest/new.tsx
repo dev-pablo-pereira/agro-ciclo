@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Pressable, TextInput, Platform } from "react-native";
+import { View, Pressable, TextInput, Platform, StyleSheet } from "react-native";
 import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -48,27 +48,31 @@ export default function New() {
       const endStr = converteDataParaStringISO(end);
 
       await newHarvest(name, season, startStr, endStr);
-      router.push('/harvest')
+      router.push("/harvest");
     } else {
-      alert('Todos os campos devem estar preenchidos')
+      alert("Todos os campos devem estar preenchidos");
     }
   };
 
   return (
-    <View>
-      <CustomInput label="Nome" onChangeText={setName} />
-      <CustomInput label="Estação" onChangeText={setSeason} />
+    <View style={styles.container}>
+      <CustomInput label="Nome" onChangeText={setName} placeholder="Ex: Safrinha"/>
+      <CustomInput label="Estação" onChangeText={setSeason} placeholder="Ex: Primavera"/>
 
-      <Pressable onPress={() => toggleDatePicker("start")}>
+      <Pressable onPress={() => toggleDatePicker("start")} style={styles.dateWrapper}>
         <TextInput
+          style={styles.date}
+          placeholderTextColor={'white'}
           editable={false}
           placeholder="Data de Início"
           value={start ? start.toLocaleDateString("pt-BR") : ""}
         />
       </Pressable>
 
-      <Pressable onPress={() => toggleDatePicker("end")}>
+      <Pressable onPress={() => toggleDatePicker("end")} style={styles.dateWrapper}>
         <TextInput
+          style={styles.date}
+          placeholderTextColor={'white'}
           editable={false}
           placeholder="Data de Fim"
           value={end ? end.toLocaleDateString("pt-BR") : ""}
@@ -94,3 +98,22 @@ export default function New() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  dateWrapper: {
+    width: "100%",
+    alignItems: "center",
+  },
+  date: {
+    backgroundColor: "#8D6E63",
+    marginBottom: 30,
+    borderRadius: 5,
+    width: "75%",
+    height: 50,
+    paddingLeft: 10
+  },
+});

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Pressable, TextInput, Platform } from "react-native";
+import { View, Pressable, TextInput, Platform, StyleSheet } from "react-native";
 import CustomInput from "../../components/input";
 import CustomButtom from "../../components/buttom";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -105,12 +105,17 @@ export default function New() {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <CustomInput label="Nome" value={name} onChangeText={setName} />
       <CustomInput label="Estação" value={season} onChangeText={setSeason} />
 
-      <Pressable onPress={() => toggleDatePicker("start")}>
+      <Pressable
+        onPress={() => toggleDatePicker("start")}
+        style={styles.dateWrapper}
+      >
         <TextInput
+          style={styles.date}
+          placeholderTextColor={"white"}
           editable={false}
           placeholder="Data de Início"
           value={
@@ -123,8 +128,13 @@ export default function New() {
         />
       </Pressable>
 
-      <Pressable onPress={() => toggleDatePicker("end")}>
+      <Pressable
+        onPress={() => toggleDatePicker("end")}
+        style={styles.dateWrapper}
+      >
         <TextInput
+          style={styles.date}
+          placeholderTextColor={"white"}
           editable={false}
           placeholder="Data de Fim"
           value={
@@ -154,3 +164,22 @@ export default function New() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  dateWrapper: {
+    width: "100%",
+    alignItems: "center",
+  },
+  date: {
+    backgroundColor: "#8D6E63",
+    marginBottom: 30,
+    borderRadius: 5,
+    width: "75%",
+    height: 50,
+    paddingLeft: 10,
+  },
+});
