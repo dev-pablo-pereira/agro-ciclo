@@ -110,17 +110,6 @@ export default function index() {
         <View
           style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
         >
-          <TextBody
-            text={`Sementes Por Ha: ${Intl.NumberFormat("pt-BR").format(
-              calcSeeds
-            )} mil
-            kg/ha`}
-          />
-        </View>
-
-        <View
-          style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
-        >
           <Icon
             name="seedling"
             type="font-awesome-5"
