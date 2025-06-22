@@ -68,6 +68,7 @@ export default function Home() {
           <Small title="Produtos" onPress={() => router.push("product")} />
           <Small title="Cultivos" onPress={() => router.push("cultivation")} />
         </View>
+        <Small title="Safra" onPress={() => router.push("harvest")} />
       </View>
       {userAreas === null ? (
         <Text>Nenhuma área</Text>

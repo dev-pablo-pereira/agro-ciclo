@@ -109,10 +109,9 @@ export default function Edit() {
         harvest !== cultivationInfo.id_harvest
       ) {
         await editCultivation(Number(id), area, product, harvest);
-        router.push("/cultivation");
-      } else {
-        alert("Deve ter selecionado todos os campos");
       }
+
+      router.push("/cultivation");
     }
   };
 

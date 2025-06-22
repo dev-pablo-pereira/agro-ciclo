@@ -84,13 +84,16 @@ export default function Area() {
 
         <View style={styles.containerList}></View>
 
+        {showError && (
+          <Text style={styles.errorText}>Necessário que todos os campos estão preenchidos e no minimo 3 localizações</Text>
+        )}
         <CustomButtom title="Salvar área" onPress={() => validaArea()} />
       </ScrollView>
 
       {showPickColor && (
         <View style={styles.overlay}>
           <View style={styles.pickerContainer}>
-            <PickColor  onSelect={handlePickColor} />
+            <PickColor onSelect={handlePickColor} />
             <Button
               title="Fechar"
               buttonStyle={styles.closeButton}
@@ -154,4 +157,7 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     gap: 10,
   },
+  errorText: {
+    color: 'red'
+  }
 });
