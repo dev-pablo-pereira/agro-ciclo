@@ -1,6 +1,6 @@
 import { Card, Text, Button, Icon } from "@rneui/themed";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { KgPerHectare } from "../../hooks/SupplyCalculations/plantasMetrosLinear";
 import { getProduct } from "../../db/Repositories/productRepository";
@@ -104,9 +104,9 @@ export default function index() {
   };
 
   return (
-    <View>
-      <Card>
-        <Card.Title>{infoProduct?.name}</Card.Title>
+    <View style={styles.container}>
+      <Card containerStyle={styles.card}>
+        <Card.Title style={styles.title}>{infoProduct?.name}</Card.Title>
         <View
           style={{ flexDirection: "row", alignItems: "center", padding: 8 }}
         >
@@ -125,16 +125,17 @@ export default function index() {
             name="seedling"
             type="font-awesome-5"
             size={20}
+            color={"white"}
             style={{ marginRight: 8 }}
           />
-          <TextBody
-            text={`Sementes Por Ha:${" "}
-            ${new Intl.NumberFormat("pt-BR", {
+          <Text style={styles.text}>
+            Sementes Por Ha:{" "}
+            {new Intl.NumberFormat("pt-BR", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             }).format(calcSeeds)}{" "}
-            kg/ha`}
-          />
+            kg/ha
+          </Text>
         </View>
 
         <View
@@ -144,9 +145,10 @@ export default function index() {
             name="seedling"
             type="font-awesome-5"
             size={20}
+            color={"white"}
             style={{ marginRight: 8 }}
           />
-          <Text>
+          <Text style={styles.text}>
             Sementes Total:{" "}
             {new Intl.NumberFormat("pt-BR", {
               minimumFractionDigits: 2,
@@ -159,3 +161,30 @@ export default function index() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 20,
+  },
+  list: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  card: {
+    backgroundColor: "#8D6E63",
+    width: "90%",
+    borderRadius: 5,
+  },
+  title: {
+    fontSize: 25,
+    color: "white",
+    marginBottom: 6,
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    marginBottom: 5,
+  },
+});
