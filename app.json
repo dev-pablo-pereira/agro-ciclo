@@ -21,14 +21,28 @@
     },
     "android": {
       "adaptiveIcon": {
+        "versionCode": 1,
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pabloaluno.AgroCiclo"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": ["expo-sqlite", "expo-router", "expo-asset"]
+    "plugins": [
+      "expo-sqlite",
+      "expo-router",
+      "expo-asset"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "86e464e8-a936-4ee8-9358-89e6e2aee49e"
+      }
+    }
   }
 }
