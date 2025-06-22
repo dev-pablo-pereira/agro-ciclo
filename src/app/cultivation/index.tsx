@@ -12,6 +12,7 @@ import { Button, Card, Text } from "@rneui/themed";
 import DeleteButton from "../../components/buttom/delete";
 import EditButton from "../../components/buttom/edit";
 import TextBody from "../../components/text";
+import CardCultivation from "../../components/cardCultivation";
 
 type Cultivation = {
   id_cultivation: number;
@@ -51,30 +52,21 @@ export default function index() {
         data={listCultivations}
         style={styles.list}
         renderItem={({ item }) => (
-          <Card containerStyle={styles.card}>
-            <Card.Title style={styles.title}>
-              Produto: {item.productName}
-            </Card.Title>
-            <TextBody text={`Data: ${item.harvestName}`} />
-            <TextBody text={`Safra: ${item.harvestName}`} />
-            <TextBody text={`Área: ${item.areaName}`} />
-            <View style={styles.estimated}>
-              <CustomButtom
-                title="Estimativa"
-                icon="calculator"
-                type="antdesign"
-                onPress={() => router.push(`calc/${item.id_cultivation}`)}
-              />
-            </View>
-            <View style={styles.options}>
-              <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
-              <EditButton
-                onPress={() =>
-                  router.push(`/cultivation/${item.id_cultivation}`)
-                }
-              />
-            </View>
-          </Card>
+          <CardCultivation
+            title={`Produto: ${item.productName}`}
+            bodyTexts={[
+              `Data: ${item.harvestName}`,
+              `Safra: ${item.harvestName}`,
+              `Área: ${item.areaName}`,
+            ]}
+            idCultivation={item.id_cultivation}
+          >
+            {" "}
+            <DeleteButton onPress={() => deleteCul(item.id_cultivation)} />
+            <EditButton
+              onPress={() => router.push(`/cultivation/${item.id_cultivation}`)}
+            />{" "}
+          </CardCultivation>
         )}
       />
     </View>
