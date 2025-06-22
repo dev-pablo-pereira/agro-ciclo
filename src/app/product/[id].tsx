@@ -58,8 +58,8 @@ export default function Index() {
         productInfo.pms !== pms
       ) {
         await editProduct(Number(id), name, spacing, germination, populationHa);
-        router.push("product");
       }
+      router.push("product");
     }
   };
 
