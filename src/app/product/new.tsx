@@ -24,6 +24,8 @@ export default function Index() {
     ) {
       create(name, spacing, populationHa, germination, pms);
       router.replace("product");
+    } else {
+      alert("Todos os campos devem ser selecionados")
     }
   };
 
