@@ -23,7 +23,7 @@ export default function Index() {
       pms !== undefined
     ) {
       create(name, spacing, populationHa, germination, pms);
-      router.push("product");
+      router.replace("product");
     }
   };
 

@@ -48,7 +48,7 @@ export default function New() {
       const endStr = converteDataParaStringISO(end);
 
       await newHarvest(name, season, startStr, endStr);
-      router.push("/harvest");
+      router.replace("/harvest");
     } else {
       alert("Todos os campos devem estar preenchidos");
     }

@@ -59,7 +59,7 @@ export default function Index() {
       ) {
         await editProduct(Number(id), name, spacing, germination, populationHa);
       }
-      router.push("product");
+      router.replace("product");
     }
   };
 

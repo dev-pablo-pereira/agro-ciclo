@@ -111,7 +111,7 @@ export default function Edit() {
         await editCultivation(Number(id), area, product, harvest);
       }
 
-      router.push("/cultivation");
+      router.replace("/cultivation");
     }
   };
 

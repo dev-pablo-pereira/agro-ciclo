@@ -33,7 +33,7 @@ export default function Area() {
     } else {
       const area = await createArea(currentUser, name, colorArea);
       createLocation(area.id);
-      router.push("/home");
+      router.replace("/home");
     }
   };
 
@@ -58,7 +58,7 @@ export default function Area() {
         />
 
         <View style={styles.row}>
-          <TextBody text="Cor Área" />
+          <Text style={styles.label}>Cor Área</Text>
           <Button
             buttonStyle={[
               styles.colorButton,

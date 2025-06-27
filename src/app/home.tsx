@@ -16,9 +16,16 @@ import Small from "../components/buttom/small";
 
 export default function Home() {
   const router = useRouter();
-
   const { currentUser } = useCurrentUser();
   const [userAreas, setUserAreas] = useState<any[]>([]);
+
+  // Função de verificação com tolerância
+  function isClose(p1: number[], p2: number[], tolerance = 0.00001) {
+    return (
+      Math.abs(p1[0] - p2[0]) < tolerance &&
+      Math.abs(p1[1] - p2[1]) < tolerance
+    );
+  }
 
   const listAreas = async () => {
     if (currentUser !== null) {
@@ -30,10 +37,14 @@ export default function Home() {
           if (coords.length < 3) return { ...area, dimension: 0 }; // precisa de no mínimo 3
 
           const turfPoints = coords.map((coord) => [
-            coord.longitude,
-            coord.latitude,
+            Number(coord.longitude),
+            Number(coord.latitude),
           ]);
-          turfPoints.push(turfPoints[0]); // fecha o polígono
+
+          // Fecha o polígono se necessário
+          if (!isClose(turfPoints[0], turfPoints[turfPoints.length - 1])) {
+            turfPoints.push(turfPoints[0]);
+          }
 
           const polygon = turf.polygon([turfPoints]);
           const areaM2 = turf.area(polygon);
