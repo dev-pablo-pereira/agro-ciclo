@@ -101,7 +101,7 @@ export default function New() {
     }
 
     await editHarvestDb(harvestInfo.id, name, season, startStr, endStr);
-    router.push("/harvest/index");
+    router.replace("/harvest/index");
   };
 
   return (

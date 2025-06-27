@@ -33,7 +33,7 @@ export default function Area() {
     } else {
       const area = await createArea(currentUser, name, colorArea);
       createLocation(area.id);
-      router.push("/home");
+      router.replace("/home");
     }
   };
 

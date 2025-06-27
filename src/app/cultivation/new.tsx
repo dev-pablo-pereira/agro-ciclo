@@ -74,7 +74,7 @@ export default function New() {
   const create = async () => {
     if (product && area && harvest) {
       newCultivation(area, product, harvest);
-      router.push("/cultivation");
+      router.replace("/cultivation");
     } else {
       alert("Deve ter selecionado todos os campos");
     }

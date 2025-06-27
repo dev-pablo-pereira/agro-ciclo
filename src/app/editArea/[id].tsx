@@ -60,7 +60,7 @@ export default function EditArea() {
       await createLocation(Number(id)); // grava as localizações novas
     }
 
-    router.push("/home");
+    router.replace("/home");
   };
 
   const createLocation = async (idArea: number) => {
