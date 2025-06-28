@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import * as turf from "@turf/turf";
 import { getAllCoordinate } from "../db/Repositories/coordinateRepository";
 import Small from "../components/buttom/small";
+import { Button } from "@rneui/base";
 
 export default function Home() {
   const router = useRouter();
@@ -22,8 +23,7 @@ export default function Home() {
   // Função de verificação com tolerância
   function isClose(p1: number[], p2: number[], tolerance = 0.00001) {
     return (
-      Math.abs(p1[0] - p2[0]) < tolerance &&
-      Math.abs(p1[1] - p2[1]) < tolerance
+      Math.abs(p1[0] - p2[0]) < tolerance && Math.abs(p1[1] - p2[1]) < tolerance
     );
   }
 
@@ -34,7 +34,6 @@ export default function Home() {
       const areasWithDimensions = await Promise.all(
         listAreas.map(async (area) => {
           const coords = await getAllCoordinate(area.id);
-          if (coords.length < 3) return { ...area, dimension: 0 }; // precisa de no mínimo 3
 
           const turfPoints = coords.map((coord) => [
             Number(coord.longitude),
