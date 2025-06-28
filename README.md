@@ -8,15 +8,15 @@ o plantio.
 
 ## Funcionalidades básicas (prioritárias para implementação)
 
-[ ] Permitir que o usuário defina áreas de cultivo com base em sua localização geográfica, marcando os pontos no mapa para determinar os limites da área.
+[x] Permitir que o usuário defina áreas de cultivo com base em sua localização geográfica, marcando os pontos no mapa para determinar os limites da área.
 
-[ ] Calcular automaticamente a dimensão total da propriedade e das áreas cultivadas.
+[x] Calcular automaticamente a dimensão total da propriedade e das áreas cultivadas.
 
-[ ] Associar culturas específicas a cada área delimitada (ex: milho, feijão, soja, etc.).
+[x] Associar culturas específicas a cada área delimitada (ex: milho, feijão, soja, etc.).
 
-[ ] Estimar a quantidade de recursos necessários para o cultivo de cada área, como:
+[x] Estimar a quantidade de recursos necessários para o cultivo de cada área, como:
 
-> [ ] Quantidade de sacos de sementes ou grãos.
+> [x] Quantidade de sacos de sementes ou grãos.
 
 > [ ] Quantidade de adubo.
 
@@ -98,12 +98,14 @@ Realocada para a semana semana 23 / 27 de junho
 2. Testes de fluxo
 
 ### semana 26 / 30
+Realizada
 
 1. Implementação do ORM Drizzle
 2. CRUD usuários
 3. criação do CRUD de área
 
 ### semana 02 / 06 junho
+Realizada
 
 1. CRUD produto
 2. Interface CRUD produto
@@ -113,6 +115,8 @@ Realocada para a semana semana 23 / 27 de junho
 6. Testes safra
 
 ### semana 09 / 13
+Realizada
+- Apenas não foi adicionado o calculo para o adubo e defensivos agriculos, por ter faltado tempo para implementar e por não ter visto qual seria o melhor método de calculo
 
 1. Tela lateral de navegação funcional
 2. Adicionar calculo da estimativa
@@ -120,15 +124,19 @@ Realocada para a semana semana 23 / 27 de junho
 4. Testes para calculo de estimativa
 
 ### semana 16 / 20
+Realizada
 
 1. CRUD cultivo
 2. Inteface cultivo
 3. Testes cultivos
 
 ### semana 23 / 27
+Realizado
 
 1. Teste de fluxo completo
 2. Refatorações e melhorias técnicas
+
+Apenas não foi implementado os testes unitários no sistema
 
 ## Atualizações desde o último checkpoint
 
